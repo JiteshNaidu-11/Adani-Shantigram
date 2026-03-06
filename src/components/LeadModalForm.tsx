@@ -8,21 +8,33 @@ interface LeadModalFormProps {
 }
 
 const LeadModalForm = ({ open, onClose }: LeadModalFormProps) => {
-  const [form, setForm] = useState({ name: "", mobile: "", consent: false });
+  const [form, setForm] = useState({
+    name: "",
+    mobile: "",
+    email: "",
+    message: "Hi, I'm interested in Poulomi Estates. Please share brochure, price and site visit details.",
+    consent: false
+  });
   const [submitted, setSubmitted] = useState(false);
 
   if (!open) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.name && form.mobile && form.consent) {
+    if (form.name && form.mobile && form.email && form.consent) {
       setSubmitted(true);
     }
   };
 
   const handleClose = () => {
     setSubmitted(false);
-    setForm({ name: "", mobile: "", consent: false });
+    setForm({
+      name: "",
+      mobile: "",
+      email: "",
+      message: "Hi, I'm interested in Poulomi Estates. Please share brochure, price and site visit details.",
+      consent: false
+    });
     onClose();
   };
 
@@ -73,6 +85,7 @@ const LeadModalForm = ({ open, onClose }: LeadModalFormProps) => {
                   className="w-full h-12 px-4 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
                   required
                 />
+
                 <input
                   type="tel"
                   placeholder="Mobile Number"
@@ -81,6 +94,24 @@ const LeadModalForm = ({ open, onClose }: LeadModalFormProps) => {
                   className="w-full h-12 px-4 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
                   required
                 />
+
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className="w-full h-12 px-4 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                  required
+                />
+
+                <textarea
+                  placeholder="Your Message"
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  rows={3}
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all resize-none"
+                />
+
                 <label className="flex items-start gap-2 cursor-pointer">
                   <input
                     type="checkbox"
@@ -90,9 +121,10 @@ const LeadModalForm = ({ open, onClose }: LeadModalFormProps) => {
                     required
                   />
                   <span className="text-xs text-muted-foreground">
-                    I authorize Verdant Heights to contact me. This overrides any DND registration.
+                    I authorize Puravankara's Team to contact me. This overrides any DND registration.
                   </span>
                 </label>
+
                 <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg h-12 text-base">
                   Get Pricing Details
                 </Button>
