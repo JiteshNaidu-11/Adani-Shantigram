@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -7,63 +8,157 @@ interface NavbarPrimaryProps {
 }
 
 const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
-  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   const links = ["About", "Pricing", "Amenities", "Gallery", "Location", "Contact"];
 
+  // Scroll effect
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [mobileOpen]);
+
+  const closeMenu = () => setMobileOpen(false);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-card/90 backdrop-blur-md border-b border-border">
-      <div className="container-luxury flex items-center justify-between h-16 px-4 md:px-8">
-        <a href="#" className="font-display text-xl text-foreground tracking-wide">
-          Puravankara Group
-        </a>
-
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
-            >
-              {l}
-            </a>
-          ))}
-        </div>
-
-        <div className="hidden md:flex items-center gap-3">
-          <a href="tel:+919876543210" className="flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors">
-            <Phone size={14} /> +91 98765 43210
+    <>
+      {/* NAVBAR */}
+      <motion.nav
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        className={`fixed top-0 left-0 right-0 xl:right-[340px] z-[10000] transition-all duration-500 ${
+          scrolled
+            ? "bg-card/90 backdrop-blur-md border-b border-border py-3"
+            : "bg-transparent py-5"
+        }`}
+      >
+        <div className="container-luxury mx-auto px-5 lg:px-12 flex items-center justify-between">
+          {/* LOGO */}
+          <a
+            href="#"
+            className={`font-display text-xl tracking-wide transition-colors ${
+              scrolled ? "text-foreground" : "text-white"
+            }`}
+          >
+            Puravankara Group
           </a>
-          <Button onClick={onOpenLead} size="sm" className="rounded-lg bg-primary text-primary-foreground hover:bg-primary/90">
-            Get Pricing
-          </Button>
-        </div>
 
-        {/* Mobile toggle */}
-        <button onClick={() => setOpen(!open)} className="md:hidden text-foreground">
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
+          {/* DESKTOP NAVIGATION */}
+          <div className="hidden lg:flex items-center gap-8">
+            {links.map((link) => (
+              <a
+                key={link}
+                href={`#${link.toLowerCase()}`}
+                className={`text-sm font-medium uppercase tracking-widest transition hover:text-primary ${
+                  scrolled ? "text-muted-foreground" : "text-white/80"
+                }`}
+              >
+                {link}
+              </a>
+            ))}
 
-      {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden bg-card border-b border-border px-4 pb-4 animate-fade-in">
-          {links.map((l) => (
+            {/* Phone (desktop, inside nav) */}
             <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              onClick={() => setOpen(false)}
-              className="block py-3 text-sm font-medium text-muted-foreground border-b border-border last:border-0"
+              href="tel:+919876543210"
+              className={`flex items-center gap-1 text-sm transition-colors ${
+                scrolled
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white"
+              }`}
             >
-              {l}
+              <Phone size={14} /> +91 98765 43210
             </a>
-          ))}
-          <Button onClick={() => { setOpen(false); onOpenLead(); }} className="w-full mt-3 bg-primary text-primary-foreground">
-            Get Pricing Details
-          </Button>
+
+            {/* Enquire / Get Pricing button */}
+            <Button
+              onClick={onOpenLead}
+              size="sm"
+              className={`rounded-lg transition ${
+                scrolled
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "bg-white/10 text-white border border-white/30 hover:bg-white hover:text-primary"
+              }`}
+            >
+              Get Pricing
+            </Button>
+          </div>
+
+          {/* MOBILE MENU TOGGLE */}
+          <button
+            onClick={() => setMobileOpen((prev) => !prev)}
+            className={`lg:hidden transition-colors ${
+              scrolled || mobileOpen ? "text-foreground" : "text-white"
+            }`}
+          >
+            {mobileOpen ? <X size={30} /> : <Menu size={30} />}
+          </button>
         </div>
-      )}
-    </nav>
+      </motion.nav>
+
+      {/* FULL‑SCREEN MOBILE MENU */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            key="mobileMenu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 bg-card z-[9999] flex flex-col items-center justify-center text-center"
+          >
+            {/* CLOSE BUTTON */}
+            <button
+              onClick={closeMenu}
+              className="absolute top-6 right-6 text-foreground"
+            >
+              <X size={34} />
+            </button>
+
+            <div className="flex flex-col gap-8">
+              {links.map((link) => (
+                <a
+                  key={link}
+                  href={`#${link.toLowerCase()}`}
+                  onClick={closeMenu}
+                  className="text-foreground text-2xl hover:text-primary transition"
+                >
+                  {link}
+                </a>
+              ))}
+
+              <a
+                href="tel:+919876543210"
+                onClick={closeMenu}
+                className="flex items-center justify-center gap-2 text-foreground/80 hover:text-primary transition"
+              >
+                <Phone size={18} /> +91 98765 43210
+              </a>
+
+              <Button
+                onClick={() => {
+                  closeMenu();
+                  onOpenLead();
+                }}
+                className="mt-6 bg-primary text-primary-foreground px-10 py-3 text-sm uppercase tracking-widest hover:bg-primary/90"
+              >
+                Get Pricing Details
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

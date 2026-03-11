@@ -12,7 +12,7 @@ const LeadModalForm = ({ open, onClose }: LeadModalFormProps) => {
     name: "",
     mobile: "",
     email: "",
-    message: "Hi, I'm interested in Poulomi Estates. Please share brochure, price and site visit details.",
+    message: "Hi, I'm interested in Purvankara Provident KIADB. Please share brochure, price and site visit details.",
     consent: false
   });
   const [submitted, setSubmitted] = useState(false);
@@ -32,7 +32,7 @@ const LeadModalForm = ({ open, onClose }: LeadModalFormProps) => {
       name: "",
       mobile: "",
       email: "",
-      message: "Hi, I'm interested in Poulomi Estates. Please share brochure, price and site visit details.",
+      message: "Hi, I'm interested in Purvankara Provident KIADB. Please share brochure, price and site visit details.",
       consent: false
     });
     onClose();
