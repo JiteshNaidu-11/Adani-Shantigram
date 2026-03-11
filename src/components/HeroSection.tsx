@@ -183,7 +183,7 @@ Get Pricing Details <ChevronRight size={18}/>
 onClick={onOpenLead}
 size="lg"
 variant="outline"
-className="border-white text-white px-10"
+className="border-white text-black px-10"
 >
 Book Site Visit
 </Button>
