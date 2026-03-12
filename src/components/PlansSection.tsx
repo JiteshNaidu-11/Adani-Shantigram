@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import masterplanImg from "@/assets/masterplan.jpg";
-import clubhouseImg from "@/assets/clubhouse.jpg";
+
+const masterplanImg = "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80";
+const clubhouseImg = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80";
 
 interface PlanImageCardProps {
   image: string;
@@ -15,7 +16,7 @@ const PlanImageCard = ({ image, label, onOpenLead, idx }: PlanImageCardProps & {
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ duration: 0.6, delay: idx * 0.2 }}
-    className="luxury-card overflow-hidden relative group cursor-pointer"
+    className="luxury-card overflow-hidden relative group cursor-pointer rounded-2xl"
     onClick={onOpenLead}
   >
     <img
@@ -25,7 +26,7 @@ const PlanImageCard = ({ image, label, onOpenLead, idx }: PlanImageCardProps & {
     />
     <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent transition-all duration-400 group-hover:from-foreground/80" />
     <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
-      <Button variant="outline" className="bg-background text-primary border-transparent hover:bg-background/90 rounded-lg">
+      <Button variant="outline" className="bg-background text-primary border-transparent hover:bg-background/90 rounded-xl">
         {label}
       </Button>
     </div>

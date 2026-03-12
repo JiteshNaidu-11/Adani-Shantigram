@@ -1,239 +1,158 @@
 import { motion } from "framer-motion";
-import { Phone, Calendar, MessageCircle, CheckCircle } from "lucide-react";
+import { Phone, FileText, Calendar, MessageCircle, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 interface LeadSidebarProps {
-  setModalOpen: (value: boolean) => void;
+  onOpenLead: () => void;
 }
 
-const popAnimation = {
-  whileHover: { scale: 1.07 },
-  animate: {
-    scale: [1, 1.06, 1],
-    boxShadow: [
-      "0px 4px 10px rgba(0,0,0,0.15)",
-      "0px 12px 28px rgba(0,0,0,0.35)",
-      "0px 4px 10px rgba(0,0,0,0.15)"
-    ]
-  },
-  transition: {
-    duration: 1.2,
-    repeat: Infinity,
-    ease: "easeInOut" as const
-  }
-};
-
-export default function LeadSidebar({ setModalOpen }: LeadSidebarProps) {
-
-  const openModal = () => setModalOpen(true);
-
+export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
   const [submitted, setSubmitted] = useState(false);
-
   const [form, setForm] = useState({
     name: "",
-    phone: "",
-    configuration: ""
+    email: "",
+    interest: "Brochure",
   });
 
-  const handleSubmit = () => {
-    setSubmitted(true);
-
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 4000);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (form.name && form.email) setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 4000);
   };
 
-  const openWhatsApp = () => {
-    const phone = "919876543210";
-    const message = encodeURIComponent(
-      "Hi, I'm interested in Puravankara Group residences. Please share the price sheet, floor plans and site visit details."
-    );
-    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-  };
-
-  const makePhoneCall = () => {
-    window.location.href = "tel:+919876543210";
-  };
+  const openEnquiryForm = () => onOpenLead();
 
   return (
     <>
-      <iframe name="hidden_iframe" style={{ display: "none" }} />
-
-      {/* DESKTOP SIDEBAR */}
-      <div className="fixed top-0 right-0 w-[340px] h-screen bg-white text-gray-800 shadow-2xl border-l border-gray-200 z-[9999] hidden xl:flex flex-col overflow-y-auto">
-
-        <div className="bg-primary text-white text-center text-sm font-semibold py-2 animate-pulse">
-          🔥 PRE-LAUNCH OFFERS AVAILABLE
+      <div className="fixed top-0 right-0 w-[320px] xl:w-[340px] h-screen bg-card border-l border-border z-[9000] hidden xl:flex flex-col shadow-xl">
+        {/* Top strip */}
+        <div className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground text-center py-2.5 px-4">
+          <p className="text-xs font-semibold uppercase tracking-wider animate-pulse">Get Best Price • Free Site Visit</p>
         </div>
 
-        {/* CTA */}
-        <div className="p-5 border-b border-gray-200 space-y-3">
-
-          <motion.button
-            {...popAnimation}
-            onClick={openModal}
-            className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-md font-semibold hover:bg-primary-dark"
-          >
-            <Calendar size={18} />
-            Organize Site Visit
-          </motion.button>
-
-          <motion.button
-            {...popAnimation}
-            onClick={openModal}
-            className="w-full flex items-center justify-center gap-2 border-2 border-primary text-primary py-2 rounded-md font-semibold hover:bg-primary hover:text-white"
-          >
-            <Phone size={18} />
-            Request Call Back
-          </motion.button>
-
-        </div>
-
-        {/* FORM */}
-        <div className="p-6 space-y-4 flex-1">
-
-          <h3 className="text-lg tracking-wide text-primary font-semibold">
-            ENQUIRE NOW
-          </h3>
+        <div className="flex-1 overflow-y-auto p-5 space-y-6">
+          <div>
+            <h3 className="font-display text-lg text-foreground mb-1">Enquire Now</h3>
+            <p className="text-muted-foreground text-sm">Share your details for brochure, pricing & offers.</p>
+          </div>
 
           {submitted ? (
-
-            <div className="text-center py-8">
-              <CheckCircle size={48} className="text-primary mx-auto mb-3" />
-              <p className="font-semibold text-lg">Thank You!</p>
-              <p className="text-gray-500 text-sm">
-                Our team will reach out within 30 minutes.
-              </p>
-            </div>
-
-          ) : (
-
-            <form
-              action="https://formsubmit.co/support@homeambit.com"
-              method="POST"
-              target="hidden_iframe"
-              onSubmit={handleSubmit}
-              className="space-y-4"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-8 rounded-2xl bg-secondary/80"
             >
-
+              <p className="font-display text-xl text-foreground mb-1">Thank you!</p>
+              <p className="text-muted-foreground text-sm">We'll get back within 30 minutes.</p>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
-                name="name"
-                placeholder="Full Name"
+                placeholder="Your Name"
                 value={form.name}
-                onChange={(e) =>
-                  setForm({ ...form, name: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
                 required
-                className="w-full bg-gray-50 border border-gray-300 rounded-md px-3 py-2"
+                className="w-full h-11 px-4 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
               />
-
               <input
-                type="tel"
-                name="phone"
-                placeholder="+91 Mobile Number"
-                value={form.phone}
-                onChange={(e) =>
-                  setForm({ ...form, phone: e.target.value })
-                }
+                type="email"
+                placeholder="Email Address"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
                 required
-                className="w-full bg-gray-50 border border-gray-300 rounded-md px-3 py-2"
+                className="w-full h-11 px-4 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
               />
-
               <select
-                name="configuration"
-                value={form.configuration}
-                onChange={(e) =>
-                  setForm({ ...form, configuration: e.target.value })
-                }
-                className="w-full bg-gray-50 border border-gray-300 rounded-md px-3 py-2"
+                value={form.interest}
+                onChange={(e) => setForm({ ...form, interest: e.target.value })}
+                className="w-full h-11 px-4 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
               >
-                <option>Select Configuration</option>
-                <option>2 BHK</option>
-                <option>3 BHK</option>
-                <option>4 BHK</option>
-                <option>Penthouse</option>
+                <option value="Brochure">Brochure</option>
+                <option value="Price List">Price List</option>
+                <option value="Site Visit">Site Visit</option>
+                <option value="Callback">Request Callback</option>
               </select>
-
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_subject" value="New Puravankara Lead" />
-
               <motion.button
-                {...popAnimation}
                 type="submit"
-                className="w-full bg-primary text-white py-3 rounded-md font-semibold hover:bg-primary-dark"
+                whileHover={{ scale: 1.05, boxShadow: "0 8px 25px -5px rgba(0,0,0,0.15)" }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="w-full h-11 rounded-xl bg-accent text-accent-foreground font-semibold text-sm flex items-center justify-center gap-2"
               >
-                Get Price Details
+                Submit <ChevronRight size={16} />
               </motion.button>
-
-              <p className="text-xs text-gray-500">
-                Instant price sheet & floor plans will be shared.
-              </p>
-
             </form>
-
           )}
 
+          <div className="pt-4 border-t border-border space-y-3">
+            <motion.button
+              onClick={onOpenLead}
+              whileHover={{ scale: 1.03, x: 4 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="w-full flex items-center justify-between gap-2 py-3 px-4 rounded-xl border border-border hover:border-accent/50 hover:bg-secondary/50 transition-colors text-left"
+            >
+              <span className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <FileText size={18} className="text-accent" /> Full Enquiry Form
+              </span>
+              <ChevronRight size={16} className="text-muted-foreground" />
+            </motion.button>
+            <motion.button
+              onClick={onOpenLead}
+              whileHover={{ scale: 1.03, x: 4 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="w-full flex items-center justify-between gap-2 py-3 px-4 rounded-xl border border-border hover:border-accent/50 hover:bg-secondary/50 transition-colors text-left"
+            >
+              <span className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <Calendar size={18} className="text-accent" /> Book Site Visit
+              </span>
+              <ChevronRight size={16} className="text-muted-foreground" />
+            </motion.button>
+            <motion.button
+              onClick={openEnquiryForm}
+              whileHover={{ scale: 1.05, boxShadow: "0 8px 20px -5px rgba(37,211,102,0.4)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="w-full h-11 rounded-xl bg-[#25D366] text-white font-semibold text-sm flex items-center justify-center gap-2"
+            >
+              <MessageCircle size={18} /> Enquire (Form)
+            </motion.button>
+          </div>
         </div>
 
-        {/* WhatsApp */}
-        <div className="p-4 border-t border-gray-200">
-
-          <motion.button
-            {...popAnimation}
-            onClick={openWhatsApp}
-            className="flex items-center justify-center gap-2 bg-primary text-white py-2 rounded-md font-semibold hover:bg-primary-dark w-full"
+        <div className="p-4 border-t border-border">
+          <motion.a
+            href="tel:18001080009"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
           >
-            <MessageCircle size={18} />
-            WhatsApp Us
-          </motion.button>
-
+            <Phone size={16} /> 1800 108 0009
+          </motion.a>
         </div>
-
       </div>
 
-      {/* TABLET FLOAT */}
-      <div className="hidden md:flex xl:hidden fixed bottom-6 right-6 flex-col gap-3 z-[9999]">
-
-        <button
-          onClick={openModal}
-          className="bg-primary text-white p-4 rounded-full shadow-lg"
+      {/* Tablet float - only when sidebar hidden */}
+      <div className="hidden md:flex xl:hidden fixed bottom-6 right-6 flex-col gap-3 z-[9000]">
+        <motion.button
+          onClick={onOpenLead}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          className="w-14 h-14 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center"
         >
-          <Calendar size={22} />
-        </button>
-
-        <button
-          onClick={openModal}
-          className="bg-primary text-white p-4 rounded-full shadow-lg"
+          <FileText size={22} />
+        </motion.button>
+        <motion.a
+          href="tel:18001080009"
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          className="w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center"
         >
           <Phone size={22} />
-        </button>
-
-      </div>
-
-      {/* MOBILE BAR */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-xl flex md:hidden z-[9999]">
-
-        <motion.button
-          onClick={makePhoneCall}
-          animate={{ scale: [1, 1.08, 1] }}
-          transition={{ duration: 1.2, repeat: Infinity }}
-          className="flex-1 flex items-center justify-center gap-2 py-4 text-sm font-semibold text-white bg-primary"
-        >
-          <Phone size={18} />
-          Call Now
-        </motion.button>
-
-        <motion.button
-          onClick={openModal}
-          animate={{ scale: [1, 1.08, 1] }}
-          transition={{ duration: 1.2, repeat: Infinity, delay: 0.4 }}
-          className="flex-1 flex items-center justify-center gap-2 py-4 text-sm font-semibold text-white bg-primary"
-        >
-          <Calendar size={18} />
-          Site Visit
-        </motion.button>
-
+        </motion.a>
       </div>
     </>
   );

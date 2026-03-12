@@ -1,4 +1,4 @@
-# Bangalore Luxury Pages
+# Adani Shantigram – Township Marketing Site
 
 ## Getting started
 

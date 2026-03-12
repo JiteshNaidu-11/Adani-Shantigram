@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,106 +8,110 @@ interface NavbarPrimaryProps {
   onOpenLead: () => void;
 }
 
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Amenities", href: "#amenities" },
+  { label: "Location", href: "#location" },
+  { label: "Contact", href: "#contact" },
+];
+
 const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
+  const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isHome = pathname === "/";
 
-  const links = ["About", "Pricing", "Amenities", "Gallery", "Location", "Contact"];
-
-  // Scroll effect
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "auto";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
   const closeMenu = () => setMobileOpen(false);
 
   return (
     <>
-      {/* NAVBAR */}
       <motion.nav
-        initial={{ y: -80 }}
+        initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 xl:right-[340px] z-[10000] transition-all duration-500 ${
-          scrolled
-            ? "bg-card/90 backdrop-blur-md border-b border-border py-3"
-            : "bg-transparent py-5"
-        }`}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={`fixed top-0 left-0 z-[10000] transition-all duration-300 xl:right-[340px] right-0 ${
+          scrolled || !isHome
+            ? "bg-card/95 backdrop-blur-lg border-b border-border py-2 shadow-lg shadow-primary/5"
+            : "bg-transparent py-4"
+        } ${scrolled || !isHome ? "text-foreground" : "text-white"}`}
       >
-        <div className="container-luxury mx-auto px-5 lg:px-12 flex items-center justify-between">
-          {/* LOGO */}
-          <a
-            href="#"
-            className={`font-display text-xl tracking-wide transition-colors ${
-              scrolled ? "text-foreground" : "text-white"
-            }`}
-          >
-            Puravankara Group
-          </a>
+        <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 min-w-0">
+          <div className="flex items-center justify-between gap-2 min-w-0">
+            <Link to="/" className="flex items-center gap-2 transition-colors duration-300 text-inherit">
+              <img src="/logo.svg" alt="Adani Realty" className="h-8 w-auto" />
+            </Link>
 
-          {/* DESKTOP NAVIGATION */}
-          <div className="hidden lg:flex items-center gap-8">
-            {links.map((link) => (
+            <div className="hidden lg:flex items-center gap-8">
+              {isHome && navLinks.map(({ label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  onClick={closeMenu}
+                  className={`text-sm font-medium transition-colors hover:text-accent ${scrolled || !isHome ? "text-muted-foreground" : "text-white/90"}`}
+                >
+                  {label}
+                </a>
+              ))}
+              {!isHome && (
+                <Link to="/" className={`text-sm font-medium hover:text-accent ${scrolled || !isHome ? "text-muted-foreground" : "text-white/90"}`}>
+                  Home
+                </Link>
+              )}
               <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
-                className={`text-sm font-medium uppercase tracking-widest transition hover:text-primary ${
-                  scrolled ? "text-muted-foreground" : "text-white/80"
-                }`}
+                href="tel:18001080009"
+                className={`flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-foreground ${scrolled || !isHome ? "text-muted-foreground" : "text-white/90"}`}
               >
-                {link}
+                <Phone size={14} /> 1800 108 0009
               </a>
-            ))}
+              <Button onClick={onOpenLead} size="sm" className="rounded-full px-6 font-medium bg-accent text-accent-foreground hover:bg-accent/90">
+                Enquire Now
+              </Button>
+            </div>
 
-            {/* Phone (desktop, inside nav) */}
-            <a
-              href="tel:+919876543210"
-              className={`flex items-center gap-1 text-sm transition-colors ${
-                scrolled
-                  ? "text-muted-foreground hover:text-primary"
-                  : "text-white/80 hover:text-white"
-              }`}
+            <button
+              type="button"
+              onClick={() => setMobileOpen((p) => !p)}
+            className="lg:hidden p-2 rounded-lg transition-colors text-inherit"
+              aria-label="Toggle menu"
             >
-              <Phone size={14} /> +91 98765 43210
-            </a>
-
-            {/* Enquire / Get Pricing button */}
-            <Button
-              onClick={onOpenLead}
-              size="sm"
-              className={`rounded-lg transition ${
-                scrolled
-                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                  : "bg-white/10 text-white border border-white/30 hover:bg-white hover:text-primary"
-              }`}
-            >
-              Get Pricing
-            </Button>
+              {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
 
-          {/* MOBILE MENU TOGGLE */}
-          <button
-            onClick={() => setMobileOpen((prev) => !prev)}
-            className={`lg:hidden transition-colors ${
-              scrolled || mobileOpen ? "text-foreground" : "text-white"
-            }`}
-          >
-            {mobileOpen ? <X size={30} /> : <Menu size={30} />}
-          </button>
+          {/* Housing-style enquiry bar - only on home when scrolled */}
+          {isHome && scrolled && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              className="mt-2 flex items-center gap-2 rounded-xl bg-secondary/80 px-3 py-2"
+            >
+              <input
+                type="text"
+                placeholder="Get best price & brochure"
+                readOnly
+                onClick={onOpenLead}
+                className="flex-1 min-w-0 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none cursor-pointer"
+              />
+              <Button onClick={onOpenLead} size="sm" className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 shrink-0">
+                Submit
+              </Button>
+            </motion.div>
+          )}
         </div>
       </motion.nav>
 
-      {/* FULL‑SCREEN MOBILE MENU */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -114,52 +119,29 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 bg-card z-[9999] flex flex-col items-center justify-center text-center"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-card z-[9999] flex flex-col items-center justify-center gap-8 pt-20 pb-10"
           >
-            {/* CLOSE BUTTON */}
-            <button
-              onClick={closeMenu}
-              className="absolute top-6 right-6 text-foreground"
-            >
-              <X size={34} />
+            <button onClick={closeMenu} className="absolute top-6 right-6 text-foreground p-2" aria-label="Close menu">
+              <X size={28} />
             </button>
-
-            <div className="flex flex-col gap-8">
-              {links.map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  onClick={closeMenu}
-                  className="text-foreground text-2xl hover:text-primary transition"
-                >
-                  {link}
-                </a>
-              ))}
-
-              <a
-                href="tel:+919876543210"
-                onClick={closeMenu}
-                className="flex items-center justify-center gap-2 text-foreground/80 hover:text-primary transition"
-              >
-                <Phone size={18} /> +91 98765 43210
+            {isHome && navLinks.map(({ label, href }) => (
+              <a key={label} href={href} onClick={closeMenu} className="text-foreground text-xl font-medium hover:text-accent transition-colors">
+                {label}
               </a>
-
-              <Button
-                onClick={() => {
-                  closeMenu();
-                  onOpenLead();
-                }}
-                className="mt-6 bg-primary text-primary-foreground px-10 py-3 text-sm uppercase tracking-widest hover:bg-primary/90"
-              >
-                Get Pricing Details
-              </Button>
-            </div>
+            ))}
+            {!isHome && <Link to="/" onClick={closeMenu} className="text-foreground text-xl font-medium hover:text-accent">Home</Link>}
+            <a href="tel:18001080009" onClick={closeMenu} className="flex items-center gap-2 text-muted-foreground hover:text-accent text-lg">
+              <Phone size={20} /> 1800 108 0009
+            </a>
+            <Button onClick={() => { closeMenu(); onOpenLead(); }} className="rounded-full bg-accent text-accent-foreground px-8 py-3 font-medium">
+              Enquire Now
+            </Button>
           </motion.div>
         )}
       </AnimatePresence>
     </>
   );
-};
+}
 
 export default NavbarPrimary;

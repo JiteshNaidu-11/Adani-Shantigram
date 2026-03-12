@@ -1,217 +1,140 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Shield, MapPin, TreePine, Calendar } from "lucide-react";
-import heroImg1 from "@/assets/hero-1.jpg";
-import heroImg2 from "@/assets/hero-2.jpg";
+import { ChevronDown, MapPin, Shield } from "lucide-react";
 
 interface HeroSectionProps {
   onOpenLead: () => void;
 }
 
-const popAnimation = {
-  whileHover: { scale: 1.07 },
-  animate: {
-    scale: [1, 1.06, 1],
-    boxShadow: [
-      "0px 4px 10px rgba(0,0,0,0.15)",
-      "0px 12px 28px rgba(0,0,0,0.35)",
-      "0px 4px 10px rgba(0,0,0,0.15)"
-    ]
-  },
-  transition: {
-    duration: 1.2,
-    repeat: Infinity,
-    ease: "easeInOut" as const
-  }
-};
-
-const slides = [heroImg1, heroImg2];
+// Hero background – use /hero-1.jpg, /hero-2.jpg, /hero-3.jpg in public/ for your own photos
+const heroImages = [
+  "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=90",
+  "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1920&q=90",
+  "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1920&q=90",
+];
 
 export default function HeroSection({ onOpenLead }: HeroSectionProps) {
-
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((c) => (c + 1) % slides.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
+    const t = setInterval(() => setCurrent((c) => (c + 1) % heroImages.length), 5500);
+    return () => clearInterval(t);
   }, []);
 
   return (
+    <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden">
+      {/* Background images with crossfade */}
+      {heroImages.map((src, i) => (
+        <div
+          key={i}
+          className="absolute inset-0 transition-opacity duration-[1200ms] ease-out"
+          style={{ opacity: i === current ? 1 : 0 }}
+        >
+          <img
+            src={src}
+            alt=""
+            className="w-full h-full object-cover object-center scale-105"
+          />
+        </div>
+      ))}
+      {/* Layered overlay: dark base + gradient for readability */}
+      <div className="absolute inset-0 bg-primary/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-transparent to-primary/75" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-transparent to-primary/30" />
 
-<section className="relative w-full min-h-screen overflow-hidden">
+      {/* Content */}
+      <div className="relative z-10 container-custom mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 flex flex-col items-center text-center min-h-[100dvh] justify-center">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-accent font-semibold text-xs sm:text-sm uppercase tracking-[0.3em] mb-5"
+        >
+          Adani Shantigram — Gujarat's Largest Integrated Township
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.6 }}
+          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white max-w-4xl leading-[1.1] mb-5 drop-shadow-lg"
+        >
+          Where The Good Life Begins
+        </motion.h1>
+        <div className="w-16 h-0.5 bg-accent rounded-full mb-6" aria-hidden />
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="text-white/90 text-base sm:text-lg md:text-xl max-w-2xl mb-10 leading-relaxed"
+        >
+          Adani Shantigram — 600 acres on SG Highway, between Ahmedabad & Gandhinagar. Premium homes, villas, golf club & world-class amenities.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="flex flex-wrap justify-center gap-3 sm:gap-5 mb-12"
+        >
+          <Button
+            onClick={onOpenLead}
+            size="lg"
+            className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-6 text-base font-semibold shadow-xl shadow-accent/20 hover:shadow-accent/30 transition-shadow"
+          >
+            Get Brochure & Pricing
+          </Button>
+          <Button
+            onClick={onOpenLead}
+            size="lg"
+            variant="outline"
+            className="rounded-full border-2 border-white/70 bg-white/10 text-white hover:bg-white/20 hover:border-white backdrop-blur-sm px-8 py-6"
+          >
+            Book Site Visit
+          </Button>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.85, duration: 0.5 }}
+          className="flex flex-wrap justify-center gap-6 sm:gap-10 text-white/90 text-sm"
+        >
+          <span className="flex items-center gap-2">
+            <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
+              <Shield size={14} className="text-accent" />
+            </span>
+            RERA Registered
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
+              <MapPin size={14} className="text-accent" />
+            </span>
+            SG Highway · 18.9 km to Airport
+          </span>
+        </motion.div>
+      </div>
 
-{/* BACKGROUND */}
-
-{slides.map((src, i) => (
-<img
-key={i}
-src={src}
-className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-style={{ opacity: i === current ? 1 : 0 }}
-/>
-))}
-
-<div className="absolute inset-0 bg-black/60" />
-
-{/* CONTENT */}
-
-<div className="relative z-10 container mx-auto px-6 lg:px-10 min-h-screen flex items-center pt-24 md:pt-28 lg:pt-32">
-
-<div className="grid lg:grid-cols-[380px_1fr] gap-12 items-center w-full">
-
-{/* LEFT PROPERTY CARD */}
-
-<div className="order-2 lg:order-1">
-
-<div className="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-[380px] mx-auto lg:mx-0">
-
-<div className="bg-primary text-center py-3 font-semibold text-white">
-Pre Launch
-</div>
-
-<div className="p-6 space-y-3">
-
-<h3 className="text-xl font-display">
-PURAVANKARA GROUP
-</h3>
-
-<p className="text-sm text-gray-500">
-Whitefield, East Bangalore
-</p>
-
-<div className="grid grid-cols-2 gap-y-3 text-sm mt-4">
-
-<span>Property Type</span>
-<span className="text-right font-semibold">Luxury Residences</span>
-
-<span>Developer</span>
-<span className="text-right font-semibold">Puravankara Ltd</span>
-
-<span>Total Units</span>
-<span className="text-right font-semibold">1200+ Units</span>
-
-<span>Configuration</span>
-<span className="text-right font-semibold">2, 3 & 4 BHK</span>
-
-<span>Land Area</span>
-<span className="text-right font-semibold">12 Acres</span>
-
-<span>RERA</span>
-<span className="text-right font-semibold">Registered</span>
-
-</div>
-
-</div>
-
-<div className="bg-primary text-center py-3 font-semibold text-white">
-Total Units : 1200+
-</div>
-
-<div className="p-5">
-
-<motion.button
-{...popAnimation}
-onClick={onOpenLead}
-className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-md font-semibold hover:bg-primary-dark"
->
-<Calendar size={18} />
-Express Your Interest
-</motion.button>
-
-</div>
-
-</div>
-
-</div>
-
-{/* HERO TEXT */}
-
-<motion.div
-initial={{ opacity: 0, y: 40 }}
-animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 0.8 }}
-className="order-1 lg:order-2 text-center lg:text-left max-w-3xl"
->
-
-<p className="text-accent text-sm tracking-[0.2em] uppercase mb-4">
-PREMIUM RESIDENCES · WHITEFIELD, BANGALORE
-</p>
-
-<h1 className="text-4xl md:text-6xl font-display text-white mb-6 leading-tight">
-Puravankara Group
-</h1>
-
-<p className="text-white/80 text-lg md:text-xl mb-10 leading-relaxed">
-Where luxury meets nature. Exquisitely crafted 2, 3 & 4 BHK residences starting from ₹1.2 Cr.
-</p>
-
-{/* FEATURES */}
-
-<div className="flex flex-wrap justify-center lg:justify-start gap-6 mb-10 text-white/80 text-sm">
-
-<div className="flex items-center gap-2">
-<Shield size={16}/> RERA Registered
-</div>
-
-<div className="flex items-center gap-2">
-<MapPin size={16}/> Whitefield Location
-</div>
-
-<div className="flex items-center gap-2">
-<TreePine size={16}/> 80% Open Space
-</div>
-
-</div>
-
-{/* CTA */}
-
-<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-
-<Button
-onClick={onOpenLead}
-size="lg"
-className="bg-primary text-primary-foreground px-10"
->
-Get Pricing Details <ChevronRight size={18}/>
-</Button>
-
-<Button
-onClick={onOpenLead}
-size="lg"
-variant="outline"
-className="border-white text-black px-10"
->
-Book Site Visit
-</Button>
-
-</div>
-
-</motion.div>
-
-</div>
-
-</div>
-
-{/* SLIDER DOTS */}
-
-<div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-
-{slides.map((_, i) => (
-<button
-key={i}
-onClick={() => setCurrent(i)}
-className={`w-2 h-2 rounded-full transition-all ${
-i === current ? "bg-primary w-6" : "bg-white/40"
-}`}
-/>
-))}
-
-</div>
-
-</section>
-);
+      {/* Slider dots + scroll */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-5 z-10">
+        <div className="flex gap-2.5">
+          {heroImages.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === current ? "w-10 bg-accent" : "w-1.5 bg-white/50 hover:bg-white/80"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+        <a
+          href="#about"
+          className="flex flex-col items-center gap-1.5 text-white/70 hover:text-white transition-colors"
+        >
+          <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em]">Scroll</span>
+          <ChevronDown size={20} className="animate-bounce" strokeWidth={2} />
+        </a>
+      </div>
+    </section>
+  );
 }

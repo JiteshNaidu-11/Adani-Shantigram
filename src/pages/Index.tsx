@@ -1,41 +1,38 @@
-import { useState } from "react";
-import NavbarPrimary from "@/components/NavbarPrimary";
+import { useLeadModal } from "@/context/LeadModalContext";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
+import ProjectsSection from "@/components/ProjectsSection";
 import HighlightCardsGrid from "@/components/HighlightCardsGrid";
-import PricingSection from "@/components/PricingSection";
-import PlansSection from "@/components/PlansSection";
 import AmenitiesSection from "@/components/AmenitiesSection";
-import GalleryCarousel from "@/components/GalleryCarousel";
 import LocationMapSection from "@/components/LocationMapSection";
 import SiteVisitSection from "@/components/SiteVisitSection";
-import LeadModalForm from "@/components/LeadModalForm";
+import VideosSection from "@/components/VideosSection";
+import MasterLayoutSection from "@/components/MasterLayoutSection";
+import TrustIndicators from "@/components/TrustIndicators";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import FooterSection from "@/components/FooterSection";
 
 const Index = () => {
-  const [leadOpen, setLeadOpen] = useState(false);
-  const openLead = () => setLeadOpen(true);
+  const { openLead } = useLeadModal();
 
   return (
-    <div className="min-h-screen bg-background pb-14 md:pb-0">
-      <NavbarPrimary onOpenLead={openLead} />
+    <div className="min-h-screen bg-background pb-20 md:pb-0">
       <main>
         <HeroSection onOpenLead={openLead} />
         <AboutSection onOpenLead={openLead} />
+        <TrustIndicators />
+        <ProjectsSection onOpenLead={openLead} />
         <HighlightCardsGrid />
-        <PricingSection onOpenLead={openLead} />
-        <PlansSection onOpenLead={openLead} />
         <AmenitiesSection />
-        <GalleryCarousel />
+        <VideosSection />
+        <MasterLayoutSection />
         <LocationMapSection onOpenLead={openLead} />
         <SiteVisitSection />
       </main>
       <FooterSection />
-      <ChatbotWidget />
+      <ChatbotWidget onEnquire={openLead} />
       <StickyMobileCTA onOpenLead={openLead} />
-      <LeadModalForm open={leadOpen} onClose={() => setLeadOpen(false)} />
     </div>
   );
 };

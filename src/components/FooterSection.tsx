@@ -12,20 +12,21 @@ const FooterSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.8 }}
-        className="container-luxury section-padding !py-12"
+        className="container-custom mx-auto section-padding !py-12"
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h4 className="font-display text-lg text-foreground mb-4">Puravankara Group</h4>
+            <img src="/logo.svg" alt="Adani Realty" className="h-7 w-auto mb-3 opacity-90" />
+            <h4 className="font-display text-lg text-foreground mb-4">Adani Shantigram</h4>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Premium 2, 3 & 4 BHK residences in Whitefield, Bangalore. RERA Registered.
+              Adani Shantigram — 600-acre integrated township on SG Highway between Ahmedabad & Gandhinagar. Premium 2, 3, 4 & 5 BHK homes, villas, The Belvedere Golf & Country Club and world-class amenities. RERA Registered.
             </p>
           </div>
           <div>
             <h4 className="font-display text-base text-foreground mb-4">Quick Links</h4>
             <div className="space-y-2">
-              {["About", "Pricing", "Amenities", "Gallery", "Location"].map((l) => (
-                <a key={l} href={`#${l.toLowerCase()}`} className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+              {["About", "Projects", "Amenities", "Location", "Contact"].map((l) => (
+                <a key={l} href={`#${l.toLowerCase()}`} className="block text-sm text-muted-foreground hover:text-accent transition-colors">
                   {l}
                 </a>
               ))}
@@ -34,15 +35,15 @@ const FooterSection = () => {
           <div>
             <h4 className="font-display text-base text-foreground mb-4">Contact</h4>
             <div className="space-y-2 text-sm text-muted-foreground">
-              <p>+91 98765 43210</p>
-              <p>sales@puravankara.in</p>
-              <p>Whitefield, Bangalore 560066</p>
+              <p>Toll-Free: 1800 108 0009 (India)</p>
+              <p>info@adanirealty.com</p>
+              <p>SG Highway, Ahmedabad – Gandhinagar, Gujarat</p>
             </div>
           </div>
           <div>
             <h4 className="font-display text-base text-foreground mb-4">Legal</h4>
             <div className="space-y-2 text-sm text-muted-foreground">
-              <p>RERA No: PRM/KA/RERA/1234</p>
+              <p>RERA Registered</p>
               <p>Privacy Policy</p>
               <p>Terms & Conditions</p>
             </div>
@@ -63,14 +64,11 @@ const FooterSection = () => {
               animate={{ opacity: 1, height: "auto" }}
               className="text-xs text-muted-foreground leading-relaxed overflow-hidden"
             >
-              This website is meant for information purposes only and should not be treated as an offer or solicitation for purchase.
-              The project details, amenities, and specifications mentioned herein are subject to change without notice and do not constitute
-              a legal offering. All images are artist's impressions and may vary from the actual project. Please contact our sales team
-              for verified and updated information.
+              This website is for information purposes only and should not be treated as an offer or solicitation. Project details, amenities and specifications are subject to change. Images may be artist's impressions. Please contact our sales team for verified information.
             </motion.p>
           )}
           <p className="text-xs text-muted-foreground mt-4">
-            © 2026 Puravankara Group. All rights reserved.
+            © 2025 Adani Realty. All rights reserved.
           </p>
         </div>
       </motion.div>

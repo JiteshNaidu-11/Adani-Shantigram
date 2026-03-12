@@ -160,7 +160,7 @@ export default function LeadPopup() {
                       required
                     />
                     <span className="text-xs text-gray-500">
-                      I authorize Puravankara's Team to contact me.
+                      I authorize Adani Realty to contact me.
                     </span>
                   </label>
 
