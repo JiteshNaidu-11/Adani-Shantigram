@@ -40,6 +40,9 @@
     --accent-foreground: 0 0% 100%;
     --adani-gradient: linear-gradient(135deg, hsl(218, 58%, 52%) 0%, hsl(262, 45%, 54%) 100%);
     --adani-gradient-hover: linear-gradient(135deg, hsl(218, 58%, 45%) 0%, hsl(262, 45%, 47%) 100%);
+    /* Popup gradient – matches "Get Brochure & Pricing" button (blue-violet → purple → reddish-purple) */
+    --popup-gradient: linear-gradient(90deg, #374EC5 0%, #5C55C8 50%, #8446C8 100%);
+    --popup-gradient-hover: linear-gradient(90deg, #2d3ea8 0%, #4a44a8 50%, #6d38a8 100%);
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
@@ -118,6 +121,14 @@
   }
   .group:hover .group-hover\:bg-adani-gradient {
     background: var(--adani-gradient);
+    color: hsl(0, 0%, 100%);
+  }
+  .bg-popup-gradient {
+    background: var(--popup-gradient);
+    color: hsl(0, 0%, 100%);
+  }
+  .bg-popup-gradient:hover {
+    background: var(--popup-gradient-hover);
     color: hsl(0, 0%, 100%);
   }
   .card-lift {

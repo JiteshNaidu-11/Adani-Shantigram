@@ -74,6 +74,7 @@ const SiteVisitSection = () => {
               controls
               playsInline
               loop
+              preload="auto"
             >
               Your browser does not support the video tag.
             </video>

@@ -15,7 +15,8 @@ import {
   Phone,
 } from "lucide-react";
 
-const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80";
+// Local fallback when a project image is missing (use first project image)
+const FALLBACK_IMAGE = "/images/projects/the-west-park.png";
 import { Button } from "@/components/ui/button";
 import { getProjectBySlug } from "@/lib/projectsData";
 import { useLeadModal } from "@/context/LeadModalContext";
@@ -265,6 +266,7 @@ export default function PropertyDetail() {
                   className="w-full h-full object-cover"
                   controls
                   playsInline
+                  preload="auto"
                 >
                   Your browser does not support the video tag.
                 </video>

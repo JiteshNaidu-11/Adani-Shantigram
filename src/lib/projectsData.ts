@@ -26,22 +26,15 @@ export interface Project {
 }
 
 const RERA_URL = "https://www.gujrera.gujarat.gov.in/";
-const AMENITY_IMAGES = [
-  "https://images.unsplash.com/photo-1585320806297-9794b3e4ee0e?w=200&q=80",
-  "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=200&q=80",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&q=80",
-  "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=200&q=80",
-  "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=200&q=80",
-  "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=200&q=80",
-];
 
+// Local amenity images (public/images/amenities/) – no external URLs
 const defaultAmenities: ProjectAmenity[] = [
-  { name: "Landscaped Gardens", image: AMENITY_IMAGES[0] },
-  { name: "Kids Play Area", image: AMENITY_IMAGES[1] },
-  { name: "Clubhouse", image: AMENITY_IMAGES[2] },
-  { name: "Swimming Pool", image: AMENITY_IMAGES[5] },
-  { name: "Fitness Centre", image: AMENITY_IMAGES[4] },
-  { name: "Multi-purpose Court", image: AMENITY_IMAGES[3] },
+  { name: "Landscaped Gardens", image: "/images/amenities/golf.jpg" },
+  { name: "Kids Play Area", image: "/images/amenities/kids-play.jpg" },
+  { name: "Clubhouse", image: "/images/amenities/clubhouse.jpg" },
+  { name: "Swimming Pool", image: "/images/amenities/pool.jpg" },
+  { name: "Fitness Centre", image: "/images/amenities/fitness.jpg" },
+  { name: "Multi-purpose Court", image: "/images/amenities/sports.jpg" },
 ];
 
 // Project images in public/images/projects/<slug>.png (or .jpg)

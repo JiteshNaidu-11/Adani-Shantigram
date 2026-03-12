@@ -102,12 +102,12 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
           transition={{ type: "spring", damping: 28, stiffness: 300 }}
           className="relative bg-card w-full max-h-[92dvh] sm:max-h-[90vh] sm:max-w-lg sm:rounded-2xl overflow-hidden shadow-2xl border border-border flex flex-col"
         >
-          {/* Sticky header with close */}
-          <div className="sticky top-0 z-20 flex items-center justify-between px-4 pt-16 sm:pt-4 pb-3 sm:py-4 bg-card border-b border-border shrink-0">
-            <h3 className="font-display text-lg sm:text-xl text-foreground">Get Brochure & Pricing</h3>
+          {/* Sticky header – matches Get Brochure & Pricing button gradient */}
+          <div className="sticky top-0 z-20 flex items-center justify-between px-4 pt-16 sm:pt-4 pb-3 sm:py-4 bg-popup-gradient shrink-0">
+            <h3 className="font-display text-lg sm:text-xl text-white">Get Brochure & Pricing</h3>
             <button
               onClick={handleClose}
-              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              className="p-2 rounded-full text-white/90 hover:text-white hover:bg-white/20 transition-colors"
               aria-label="Close"
             >
               <X size={24} />
@@ -116,14 +116,14 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
 
           <div className="overflow-y-auto flex-1 min-h-0">
             <div className="grid sm:grid-cols-5">
-              <div className="hidden sm:flex sm:col-span-2 bg-primary flex-col justify-center gap-4 p-6">
+              <div className="hidden sm:flex sm:col-span-2 bg-popup-gradient flex-col justify-center gap-4 p-6">
                 {[
                   { icon: Phone, text: "Instant Call Back" },
                   { icon: CheckCircle, text: "Free Site Visit" },
                   { icon: Gift, text: "Best Price Guarantee" },
                 ].map(({ icon: Icon, text }) => (
-                  <div key={text} className="flex items-center gap-3 text-primary-foreground">
-                    <Icon size={18} className="text-accent flex-shrink-0" />
+                  <div key={text} className="flex items-center gap-3 text-white">
+                    <Icon size={18} className="flex-shrink-0 opacity-90" />
                     <span className="text-sm font-medium">{text}</span>
                   </div>
                 ))}
@@ -189,8 +189,7 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
                     <Button
                       type="submit"
                       disabled={loading}
-                      variant="accent"
-                      className="w-full rounded-full h-12 text-base font-semibold disabled:opacity-70 shadow-lg"
+                      className="w-full rounded-full h-12 text-base font-semibold disabled:opacity-70 shadow-lg bg-popup-gradient text-white hover:opacity-90 transition-opacity border-0"
                     >
                       {loading ? <Loader2 size={20} className="animate-spin mx-auto" /> : "Get Pricing & Brochure"}
                     </Button>
