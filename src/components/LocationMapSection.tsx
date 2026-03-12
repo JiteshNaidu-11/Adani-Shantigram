@@ -96,7 +96,7 @@ const LocationMapSection = ({ onOpenLead }: LocationMapSectionProps) => (
               visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
             }}
           >
-            <Button onClick={onOpenLead} className="w-full mt-6 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 h-12">
+            <Button onClick={onOpenLead} variant="accent" className="w-full mt-6 rounded-full h-12">
               Get Exact Location
             </Button>
           </motion.div>

@@ -78,7 +78,7 @@ export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
                 whileHover={{ scale: 1.05, boxShadow: "0 8px 25px -5px rgba(0,0,0,0.15)" }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="w-full h-11 rounded-xl bg-accent text-accent-foreground font-semibold text-sm flex items-center justify-center gap-2"
+                className="w-full h-11 rounded-xl bg-adani-gradient text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
               >
                 Submit <ChevronRight size={16} />
               </motion.button>
@@ -141,7 +141,7 @@ export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
           onClick={onOpenLead}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
-          className="w-14 h-14 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center"
+          className="w-14 h-14 rounded-full bg-adani-gradient text-white shadow-lg flex items-center justify-center hover:opacity-90 transition-opacity"
         >
           <FileText size={22} />
         </motion.button>

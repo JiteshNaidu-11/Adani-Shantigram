@@ -329,7 +329,8 @@ export default function PropertyDetail() {
                 <p className="text-muted-foreground text-sm">{LOCATION_TEXT}</p>
                 <p className="text-muted-foreground text-sm">Adani Shantigram — 600-acre integrated township · RERA registered</p>
               </div>
-              <Button onClick={openLead} className="mt-6 rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
+              <Button onClick={openLead} variant="accent"
+                className="mt-6 rounded-full">
                 Get directions & brochure
               </Button>
             </div>
@@ -358,7 +359,8 @@ export default function PropertyDetail() {
                   Master layout plan available in brochure. Contact sales for the latest layout and site plan.
                 </div>
               </div>
-              <Button onClick={openLead} className="mt-6 rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
+              <Button onClick={openLead} variant="accent"
+                className="mt-6 rounded-full">
                 Download master layout
               </Button>
             </div>
@@ -374,7 +376,7 @@ export default function PropertyDetail() {
               </p>
               <div className="rounded-xl border border-border bg-secondary/40 p-10 text-center max-w-xl mx-auto">
                 <p className="text-muted-foreground mb-4">Floor plan available on request</p>
-                <Button onClick={openLead} className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
+                <Button onClick={openLead} variant="accent" className="rounded-full">
                   Request floor plan
                 </Button>
               </div>
@@ -391,7 +393,7 @@ export default function PropertyDetail() {
               </p>
               <div className="rounded-xl border border-border bg-secondary/40 p-10 text-center max-w-xl mx-auto">
                 <p className="text-muted-foreground mb-4">Unit plans available on request</p>
-                <Button onClick={openLead} className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
+                <Button onClick={openLead} variant="accent" className="rounded-full">
                   Request unit plans
                 </Button>
               </div>
@@ -433,7 +435,8 @@ export default function PropertyDetail() {
           </p>
           <div className="flex gap-3">
             <a href="tel:18001080009">
-              <Button size="sm" className="rounded-full bg-accent text-accent-foreground gap-2">
+              <Button size="sm" variant="accent"
+              className="rounded-full gap-2">
                 <Phone size={16} /> Call Now
               </Button>
             </a>

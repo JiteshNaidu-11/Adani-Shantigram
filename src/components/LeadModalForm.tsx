@@ -190,7 +190,7 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
                       type="submit"
                       disabled={loading}
                       variant="accent"
-                      className="w-full rounded-full h-12 text-base font-semibold disabled:opacity-70 shadow-lg shadow-accent/25"
+                      className="w-full rounded-full h-12 text-base font-semibold disabled:opacity-70 shadow-lg"
                     >
                       {loading ? <Loader2 size={20} className="animate-spin mx-auto" /> : "Get Pricing & Brochure"}
                     </Button>

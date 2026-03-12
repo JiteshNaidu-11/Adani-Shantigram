@@ -64,7 +64,7 @@ export default function ChatbotWidget({ onEnquire }: ChatbotWidgetProps) {
         onClick={() => setOpen(!open)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="w-14 h-14 rounded-full bg-accent text-accent-foreground shadow-lg flex items-center justify-center"
+        className="w-14 h-14 rounded-full bg-adani-gradient text-white shadow-lg flex items-center justify-center hover:opacity-90 transition-opacity"
         aria-label="Open help menu"
       >
         {open ? <X size={24} /> : <MessageCircle size={24} />}

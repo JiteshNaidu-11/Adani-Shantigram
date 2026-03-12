@@ -49,7 +49,7 @@ export default function HeroSection({ onOpenLead }: HeroSectionProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-accent font-semibold text-xs sm:text-sm uppercase tracking-[0.3em] mb-5"
+          className="text-white font-semibold text-xs sm:text-sm uppercase tracking-[0.3em] mb-5 drop-shadow-md"
         >
           Adani Shantigram — Gujarat's Largest Integrated Township
         </motion.p>
@@ -61,7 +61,7 @@ export default function HeroSection({ onOpenLead }: HeroSectionProps) {
         >
           Where The Good Life Begins
         </motion.h1>
-        <div className="w-16 h-0.5 bg-accent rounded-full mb-6" aria-hidden />
+        <div className="w-16 h-0.5 rounded-full mb-6 bg-adani-gradient" style={{ height: "2px" }} aria-hidden />
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,7 +79,8 @@ export default function HeroSection({ onOpenLead }: HeroSectionProps) {
           <Button
             onClick={onOpenLead}
             size="lg"
-            className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-6 text-base font-semibold shadow-xl shadow-accent/20 hover:shadow-accent/30 transition-shadow"
+            variant="accent"
+            className="rounded-full px-8 py-6 text-base font-semibold shadow-xl transition-opacity"
           >
             Get Brochure & Pricing
           </Button>
@@ -100,13 +101,13 @@ export default function HeroSection({ onOpenLead }: HeroSectionProps) {
         >
           <span className="flex items-center gap-2">
             <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
-              <Shield size={14} className="text-accent" />
+              <Shield size={14} className="text-white" />
             </span>
             RERA Registered
           </span>
           <span className="flex items-center gap-2">
             <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
-              <MapPin size={14} className="text-accent" />
+              <MapPin size={14} className="text-white" />
             </span>
             SG Highway · 18.9 km to Airport
           </span>
@@ -121,7 +122,7 @@ export default function HeroSection({ onOpenLead }: HeroSectionProps) {
               key={i}
               onClick={() => setCurrent(i)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === current ? "w-10 bg-accent" : "w-1.5 bg-white/50 hover:bg-white/80"
+                i === current ? "w-10 bg-adani-gradient" : "w-1.5 bg-white/50 hover:bg-white/80"
               }`}
               aria-label={`Go to slide ${i + 1}`}
             />

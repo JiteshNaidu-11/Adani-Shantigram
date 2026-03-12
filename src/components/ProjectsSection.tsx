@@ -99,7 +99,7 @@ export default function ProjectsSection({ onOpenLead }: ProjectsSectionProps) {
                       View Details
                     </Button>
                   </Link>
-                  <Button onClick={onOpenLead} className="flex-1 rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
+                  <Button onClick={onOpenLead} variant="accent" className="flex-1 rounded-full">
                     Enquire
                   </Button>
                 </div>

@@ -39,7 +39,7 @@ export default function AboutSection({ onOpenLead }: AboutSectionProps) {
             className="relative rounded-2xl overflow-hidden card-lift order-2 lg:order-1"
           >
             <img src={aboutImage} alt="Township lifestyle" className="w-full h-72 lg:h-[400px] object-cover" />
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-accent/90 flex items-center justify-center text-accent-foreground font-display text-2xl font-semibold shadow-lg">
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl flex items-center justify-center text-white font-display text-2xl font-semibold shadow-lg bg-adani-gradient">
               600+
             </div>
           </motion.div>
@@ -58,7 +58,7 @@ export default function AboutSection({ onOpenLead }: AboutSectionProps) {
             <p className="text-muted-foreground leading-relaxed mb-8">
               With The Belvedere Golf & Country Club, Adani International School, 24×7 security, Shoppers' Plaza, and over 3,500 families already calling it home — it's a thriving community.
             </p>
-            <Button onClick={onOpenLead} className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 px-8">
+            <Button onClick={onOpenLead} variant="accent" className="rounded-full px-8">
               Download Brochure
             </Button>
           </motion.div>

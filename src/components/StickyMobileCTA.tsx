@@ -21,7 +21,7 @@ const StickyMobileCTA = ({ onOpenLead }: StickyMobileCTAProps) => (
     </button>
     <button
       onClick={onOpenLead}
-      className="flex-1 flex items-center justify-center gap-1.5 h-11 rounded-full bg-accent text-accent-foreground text-sm font-medium"
+      className="flex-1 flex items-center justify-center gap-1.5 h-11 rounded-full bg-adani-gradient text-white text-sm font-medium hover:opacity-90 transition-opacity"
     >
       <IndianRupee size={15} /> Get Price
     </button>

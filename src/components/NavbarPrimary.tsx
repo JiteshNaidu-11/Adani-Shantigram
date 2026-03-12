@@ -75,7 +75,7 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
               >
                 <Phone size={14} /> 1800 108 0009
               </a>
-              <Button onClick={onOpenLead} size="sm" className="rounded-full px-6 font-medium bg-accent text-accent-foreground hover:bg-accent/90">
+              <Button onClick={onOpenLead} size="sm" variant="accent" className="rounded-full px-6 font-medium">
                 Enquire Now
               </Button>
             </div>
@@ -104,7 +104,7 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
                 onClick={onOpenLead}
                 className="flex-1 min-w-0 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none cursor-pointer"
               />
-              <Button onClick={onOpenLead} size="sm" className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 shrink-0">
+              <Button onClick={onOpenLead} size="sm" variant="accent" className="rounded-full shrink-0">
                 Submit
               </Button>
             </motion.div>
@@ -134,7 +134,7 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
             <a href="tel:18001080009" onClick={closeMenu} className="flex items-center gap-2 text-muted-foreground hover:text-accent text-lg">
               <Phone size={20} /> 1800 108 0009
             </a>
-            <Button onClick={() => { closeMenu(); onOpenLead(); }} className="rounded-full bg-accent text-accent-foreground px-8 py-3 font-medium">
+            <Button onClick={() => { closeMenu(); onOpenLead(); }} variant="accent" className="rounded-full px-8 py-3 font-medium">
               Enquire Now
             </Button>
           </motion.div>

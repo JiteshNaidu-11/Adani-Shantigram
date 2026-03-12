@@ -38,11 +38,11 @@ export default function HighlightCardsGrid() {
               variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
               transition={{ type: "spring", stiffness: 80, damping: 16 }}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="group relative p-6 text-center rounded-2xl bg-card border border-border shadow-sm hover:shadow-lg hover:shadow-accent/10 hover:border-accent/30 transition-all duration-300 overflow-hidden"
+              className="group relative p-6 text-center rounded-2xl bg-card border border-border shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden hover:border-primary/20"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               <div className="relative">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-accent/10 border-2 border-accent/20 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent transition-all duration-300 group-hover:scale-110">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-accent/10 border-2 border-accent/20 flex items-center justify-center text-accent transition-all duration-300 group-hover:scale-110 group-hover:bg-adani-gradient group-hover:text-white group-hover:border-transparent">
                   <Icon size={24} strokeWidth={2} />
                 </div>
                 <h3 className="font-display text-base md:text-lg font-semibold text-foreground mb-2">{title}</h3>

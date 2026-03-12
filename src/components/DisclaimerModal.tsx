@@ -37,8 +37,8 @@ export default function DisclaimerModal() {
             <h2 className="font-display text-2xl font-semibold text-foreground mb-4">
               Welcome to the Official Site of Adani Realty
             </h2>
-            <div className="flex items-start gap-3 mb-4 p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
-              <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 mb-4 p-4 rounded-xl bg-accent/10 border border-accent/20">
+              <AlertCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
               <div className="text-sm text-foreground space-y-2">
                 <p className="font-semibold text-foreground">Disclaimer Note:</p>
                 <ul className="list-disc list-inside space-y-1 text-muted-foreground">
@@ -60,7 +60,7 @@ export default function DisclaimerModal() {
               <a href="#" className="text-accent hover:underline">Cookies Policy</a> and{" "}
               <a href="#" className="text-accent hover:underline">Privacy Policy</a>.
             </p>
-            <Button onClick={accept} className="w-full rounded-xl bg-accent text-accent-foreground hover:bg-accent/90 py-6 font-semibold">
+            <Button onClick={accept} variant="accent" className="w-full rounded-xl py-6 font-semibold">
               Accept
             </Button>
           </motion.div>

@@ -129,7 +129,7 @@ const SiteVisitSection = () => {
                     I authorize Adani Realty to contact me. This consent overrides any DND registration.
                   </span>
                 </label>
-                <Button type="submit" className="w-full rounded-full bg-accent text-accent-foreground hover:bg-accent/90 h-12 text-base">
+                <Button type="submit" variant="accent" className="w-full rounded-full h-12 text-base">
                   Schedule Site Visit
                 </Button>
               </form>

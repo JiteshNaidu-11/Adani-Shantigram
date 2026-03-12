@@ -19,7 +19,7 @@ const PricingCard = ({ badge, type, area, price, elevated, onOpenLead, idx }: Pr
     className={`luxury-card p-6 md:p-8 text-center relative rounded-2xl ${elevated ? "md:-mt-4 md:scale-105 ring-2 ring-accent z-10" : ""}`}
   >
     {badge && (
-      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground text-xs font-semibold px-4 py-1 rounded-full whitespace-nowrap">
+      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-adani-gradient text-white text-xs font-semibold px-4 py-1 rounded-full whitespace-nowrap">
         {badge}
       </span>
     )}
