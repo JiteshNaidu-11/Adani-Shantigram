@@ -49,8 +49,8 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
       >
         <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 min-w-0">
           <div className="flex items-center justify-between gap-2 min-w-0">
-            <Link to="/" className="flex items-center gap-2 transition-colors duration-300 text-inherit">
-              <img src="/logo.svg" alt="Adani Realty" className="h-8 w-auto" />
+            <Link to="/" className="flex items-center gap-2 transition-colors duration-300" aria-label="Adani Realty – Home">
+              <img src="/logo.png" alt="Adani Realty" className="h-10 w-auto sm:h-11" />
             </Link>
 
             <div className="hidden lg:flex items-center gap-8">
