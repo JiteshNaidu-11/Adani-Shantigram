@@ -16,7 +16,7 @@ const FooterSection = () => {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <img src="/logo.png" alt="Adani Realty" className="h-9 w-auto mb-3 opacity-90" />
+            <img src="/logo.png" alt="Adani Realty" className="h-10 w-auto mb-3 opacity-90" />
             <h4 className="font-display text-lg text-foreground mb-4">Adani Shantigram</h4>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Adani Shantigram — 600-acre integrated township on SG Highway between Ahmedabad & Gandhinagar. Premium 2, 3, 4 & 5 BHK homes, villas, The Belvedere Golf & Country Club and world-class amenities. RERA Registered.

@@ -33,9 +33,9 @@ export default function DisclaimerModal() {
             exit={{ scale: 0.95, opacity: 0 }}
             className="bg-card rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 md:p-8"
           >
-            <img src="/logo.png" alt="Adani Realty" className="h-10 w-auto mb-6" />
+            <img src="/logo.png" alt="Adani Realty" className="h-11 w-auto mb-6" />
             <h2 className="font-display text-2xl font-semibold text-foreground mb-4">
-              Welcome to the Official Site of Adani Realty
+              Welcome to Shantigram: Where 'The Good Life' Begins
             </h2>
             <div className="flex items-start gap-3 mb-4 p-4 rounded-xl bg-accent/10 border border-accent/20">
               <AlertCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
