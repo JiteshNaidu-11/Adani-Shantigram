@@ -158,18 +158,6 @@ export default function LeadModal({ open, onClose }: Props) {
                 className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-primary"
               />
 
-              {/* Consent */}
-              <label className="flex items-start gap-2 text-xs text-gray-500">
-                <input
-                  type="checkbox"
-                  name="consent"
-                  checked={form.consent}
-                  onChange={handleChange}
-                  required
-                />
-                I agree to be contacted regarding this project.
-              </label>
-
               {/* Submit Button */}
               <button
                 type="submit"

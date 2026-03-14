@@ -12,7 +12,7 @@ import PropertyDetail from "./pages/PropertyDetail";
 import LeadSidebar from "./components/LeadSidebar";
 import LeadModalForm from "./components/LeadModalForm";
 import Layout from "./components/Layout";
-import DisclaimerModal from "./components/DisclaimerModal";
+// import DisclaimerModal from "./components/DisclaimerModal";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +32,7 @@ function AppContent() {
 
   return (
     <>
-      <DisclaimerModal />
+      {/* <DisclaimerModal /> */}
       <LeadPopup />
       <div className="min-w-0 overflow-x-hidden md:pr-20 xl:pr-[340px]">
         <Routes>

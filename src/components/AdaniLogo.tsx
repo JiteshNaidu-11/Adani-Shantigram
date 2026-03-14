@@ -1,4 +1,4 @@
-/** Logo: "adani" (gradient) | "Realty" (inherits parent color for light/dark nav) – matches brand reference */
+/** Logo: "adani" (gradient) | "Shantigram" (inherits parent color for light/dark nav) */
 export default function AdaniLogo({ className = "" }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2 font-semibold text-xl tracking-tight ${className}`}>
@@ -11,7 +11,7 @@ export default function AdaniLogo({ className = "" }: { className?: string }) {
         adani
       </span>
       <span className="w-px h-5 bg-current opacity-60 shrink-0" aria-hidden />
-      <span className="text-inherit shrink-0">Realty</span>
+      <span className="text-inherit shrink-0">Shantigram</span>
     </span>
   );
 }

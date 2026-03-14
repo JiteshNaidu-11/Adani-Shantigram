@@ -124,13 +124,13 @@ export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
 
         <div className="p-4 border-t border-border">
           <motion.a
-            href="tel:18001080009"
+            href="tel:+919409374599"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
           >
-            <Phone size={16} /> 1800 108 0009
+            <Phone size={16} /> +91 94093 74599
           </motion.a>
         </div>
       </div>
@@ -146,7 +146,7 @@ export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
           <FileText size={22} />
         </motion.button>
         <motion.a
-          href="tel:18001080009"
+          href="tel:+919409374599"
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
           className="w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center"

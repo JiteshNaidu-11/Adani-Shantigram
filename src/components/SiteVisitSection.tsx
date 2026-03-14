@@ -34,7 +34,7 @@ const SiteVisitSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.mobile || !form.consent) return;
+    if (!form.name || !form.mobile) return;
     const formId = import.meta.env.VITE_FORMSPREE_ID;
     if (formId) {
       try {
@@ -118,18 +118,6 @@ const SiteVisitSection = () => {
                   className="w-full h-12 px-4 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
                   required
                 />
-                <label className="flex items-start gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={form.consent}
-                    onChange={(e) => setForm({ ...form, consent: e.target.checked })}
-                    className="mt-1 accent-primary"
-                    required
-                  />
-                  <span className="text-xs text-muted-foreground">
-                    I authorize Adani Realty to contact me. This consent overrides any DND registration.
-                  </span>
-                </label>
                 <Button type="submit" variant="accent" className="w-full rounded-full h-12 text-base">
                   Schedule Site Visit
                 </Button>

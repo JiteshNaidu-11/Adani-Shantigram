@@ -44,7 +44,7 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    if (!form.name || !form.mobile || !form.email || !form.consent) return;
+    if (!form.name || !form.mobile || !form.email) return;
 
     setLoading(true);
     try {
@@ -64,7 +64,7 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
       }
       setSubmitted(true);
     } catch {
-      setError("Something went wrong. Please try again or call 1800 108 0009.");
+      setError("Something went wrong. Please try again or call +91 94093 74599.");
     } finally {
       setLoading(false);
     }
@@ -173,18 +173,6 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
                       rows={3}
                       className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 transition-all resize-none"
                     />
-                    <label className="flex items-start gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={form.consent}
-                        onChange={(e) => setForm({ ...form, consent: e.target.checked })}
-                        className="mt-1 accent-accent"
-                        required
-                      />
-                      <span className="text-xs text-muted-foreground">
-                        I authorize Adani Realty to contact me. This overrides any DND registration.
-                      </span>
-                    </label>
                     {error && <p className="text-sm text-destructive">{error}</p>}
                     <Button
                       type="submit"

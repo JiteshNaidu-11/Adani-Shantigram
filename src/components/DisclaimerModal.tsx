@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import AdaniLogo from "@/components/AdaniLogo";
 
 const STORAGE_KEY = "adani_disclaimer_accepted";
 
@@ -33,7 +34,9 @@ export default function DisclaimerModal() {
             exit={{ scale: 0.95, opacity: 0 }}
             className="bg-card rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 md:p-8"
           >
-            <img src="/logo.png" alt="Adani Realty" className="h-11 w-auto mb-6" />
+            <div className="text-foreground mb-6">
+              <AdaniLogo className="text-xl" />
+            </div>
             <h2 className="font-display text-2xl font-semibold text-foreground mb-4">
               Welcome to Shantigram: Where 'The Good Life' Begins
             </h2>
@@ -52,8 +55,8 @@ export default function DisclaimerModal() {
             </div>
             <p className="text-sm text-muted-foreground mb-4">
               For updated sales and marketing information and collaterals, please contact:<br />
-              <strong className="text-foreground">Sales Team: 1800 108 0009 (India)</strong><br />
-              <strong className="text-foreground">Email: info@adanirealty.com</strong>
+              <strong className="text-foreground">Sales Team: +91 94093 74599</strong><br />
+              <strong className="text-foreground">Email: info@propraiserealtors.com</strong>
             </p>
             <p className="text-xs text-muted-foreground mb-6">
               We use cookies to enhance your experience. By continuing, you agree to our{" "}

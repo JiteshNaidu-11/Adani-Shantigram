@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import AdaniLogo from "@/components/AdaniLogo";
 
 interface NavbarPrimaryProps {
   onOpenLead: () => void;
@@ -49,8 +50,8 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
       >
         <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 min-w-0">
           <div className="flex items-center justify-between gap-2 min-w-0">
-            <Link to="/" className="flex items-center gap-2 transition-colors duration-300" aria-label="Adani Realty – Home">
-              <img src="/logo.png" alt="Adani Realty" className="h-15 w-auto sm:h-16" />
+            <Link to="/" className="flex items-center gap-2 transition-colors duration-300" aria-label="Adani Shantigram – Home">
+              <AdaniLogo className="text-base sm:text-lg" />
             </Link>
 
             <div className="hidden lg:flex items-center gap-8">
@@ -70,10 +71,10 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
                 </Link>
               )}
               <a
-                href="tel:18001080009"
+                href="tel:+919409374599"
                 className={`flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-foreground ${scrolled || !isHome ? "text-muted-foreground" : "text-white/90"}`}
               >
-                <Phone size={14} /> 1800 108 0009
+                <Phone size={14} /> +91 94093 74599
               </a>
               <Button onClick={onOpenLead} size="sm" variant="accent" className="rounded-full px-6 font-medium">
                 Enquire Now
@@ -131,8 +132,8 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
               </a>
             ))}
             {!isHome && <Link to="/" onClick={closeMenu} className="text-foreground text-xl font-medium hover:text-accent">Home</Link>}
-            <a href="tel:18001080009" onClick={closeMenu} className="flex items-center gap-2 text-muted-foreground hover:text-accent text-lg">
-              <Phone size={20} /> 1800 108 0009
+            <a href="tel:+919409374599" onClick={closeMenu} className="flex items-center gap-2 text-muted-foreground hover:text-accent text-lg">
+              <Phone size={20} /> +91 94093 74599
             </a>
             <Button onClick={() => { closeMenu(); onOpenLead(); }} variant="accent" className="rounded-full px-8 py-3 font-medium">
               Enquire Now

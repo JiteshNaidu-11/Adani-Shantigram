@@ -150,20 +150,6 @@ export default function LeadPopup() {
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 resize-none"
                   />
 
-                  <label className="flex items-start gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={form.consent}
-                      onChange={(e) =>
-                        setForm({ ...form, consent: e.target.checked })
-                      }
-                      required
-                    />
-                    <span className="text-xs text-gray-500">
-                      I authorize Adani Realty to contact me.
-                    </span>
-                  </label>
-
                   <input type="hidden" name="_captcha" value="false" />
                   <input type="hidden" name="_subject" value="New Lead Popup" />
 

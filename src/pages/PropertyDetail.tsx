@@ -436,7 +436,7 @@ export default function PropertyDetail() {
             *Price indicative. RERA compliant. Contact sales for updated pricing.
           </p>
           <div className="flex gap-3">
-            <a href="tel:18001080009">
+            <a href="tel:+919409374599">
               <Button size="sm" variant="accent"
               className="rounded-full gap-2">
                 <Phone size={16} /> Call Now
