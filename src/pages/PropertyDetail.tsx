@@ -20,6 +20,7 @@ const FALLBACK_IMAGE = "/images/projects/the-west-park.png";
 import { Button } from "@/components/ui/button";
 import { getProjectBySlug } from "@/lib/projectsData";
 import { useLeadModal } from "@/context/LeadModalContext";
+import FooterSection from "@/components/FooterSection";
 
 const TABS = [
   "About",
@@ -411,7 +412,7 @@ export default function PropertyDetail() {
                 <MapPin size={24} className="text-accent flex-shrink-0" />
                 <div>
                   <p className="font-medium text-foreground">{LOCATION_TEXT}</p>
-                  <p className="text-sm text-muted-foreground">Adani Shantigram — 600-acre integrated township</p>
+                  <p className="text-sm text-muted-foreground">Shantigram — 600-acre integrated township</p>
                 </div>
               </div>
               <div className="mt-4 aspect-video rounded-xl overflow-hidden bg-secondary">

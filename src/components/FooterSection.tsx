@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
-import AdaniLogo from "@/components/AdaniLogo";
+import { Link } from "react-router-dom";
+import {
+  CHANNEL_PARTNER_DISPLAY_NAME,
+  CHANNEL_PARTNER_LOGO_SRC,
+} from "@/constants/channelPartnerLegal";
+import MandatoryLegalBlock from "@/components/legal/MandatoryLegalBlock";
 
 const FooterSection = () => {
   return (
@@ -11,23 +16,41 @@ const FooterSection = () => {
         transition={{ duration: 0.8 }}
         className="container-custom mx-auto section-padding !py-12"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-10">
           <div>
-            <div className="text-foreground mb-3">
-              <AdaniLogo className="text-lg opacity-90" />
+            <div className="mb-3">
+              <img
+                src={CHANNEL_PARTNER_LOGO_SRC}
+                alt={CHANNEL_PARTNER_DISPLAY_NAME}
+                className="h-9 w-auto max-w-[220px] object-contain object-left"
+                width={220}
+                height={36}
+              />
             </div>
-            {/* <h4 className="font-display text-lg text-foreground mb-4">Adani Shantigram</h4> */}
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Adani Shantigram — 600-acre integrated township on SG Highway between Ahmedabad & Gandhinagar. Premium 2, 3, 4 & 5 BHK homes, villas, The Belvedere Golf & Country Club and world-class amenities. RERA Registered.
+              Shantigram — integrated township on SG Highway between Ahmedabad &amp; Gandhinagar.
+              This site is published by {CHANNEL_PARTNER_DISPLAY_NAME} as an authorized channel
+              partner; it is not the official developer website.
             </p>
           </div>
           <div>
             <h4 className="font-display text-base text-foreground mb-4">Quick Links</h4>
             <div className="space-y-2">
-              {["About", "Projects", "Amenities", "Location", "Contact"].map((l) => (
-                <a key={l} href={`#${l.toLowerCase()}`} className="block text-sm text-muted-foreground hover:text-accent transition-colors">
-                  {l}
-                </a>
+              {[
+                ["About", "/#about"],
+                ["Projects", "/#projects"],
+                ["Amenities", "/#amenities"],
+                ["Location", "/#location"],
+                ["Contact", "/contact"],
+                ["Legal Disclaimer", "/legal-disclaimer"],
+              ].map(([label, href]) => (
+                <Link
+                  key={label}
+                  to={href}
+                  className="block text-sm text-muted-foreground hover:text-accent transition-colors"
+                >
+                  {label}
+                </Link>
               ))}
             </div>
           </div>
@@ -39,19 +62,11 @@ const FooterSection = () => {
               <p>SG Highway, Ahmedabad – Gandhinagar, Gujarat</p>
             </div>
           </div>
-          {/* Legal section commented out
-          <div>
-            <h4 className="font-display text-base text-foreground mb-4">Legal</h4>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <p>RERA Registered</p>
-              <p>Privacy Policy</p>
-              <p>Terms & Conditions</p>
-            </div>
-          </div>
-          */}
         </div>
 
-        <div className="border-t border-border pt-6">
+        <MandatoryLegalBlock />
+
+        <div className="border-t border-border pt-6 mt-10">
           <p className="text-xs text-muted-foreground">
             © 2026 PropRaise Realty. All rights reserved.
           </p>

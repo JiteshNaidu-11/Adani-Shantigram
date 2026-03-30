@@ -3,18 +3,21 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import AdaniLogo from "@/components/AdaniLogo";
+import ChannelPartnerNavBrand from "@/components/ChannelPartnerNavBrand";
 
 interface NavbarPrimaryProps {
   onOpenLead: () => void;
 }
 
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Amenities", href: "#amenities" },
-  { label: "Location", href: "#location" },
-  { label: "Contact", href: "#contact" },
+const navLinks: (
+  | { label: string; hash: string }
+  | { label: string; to: string }
+)[] = [
+  { label: "About", hash: "#about" },
+  { label: "Projects", hash: "#projects" },
+  { label: "Amenities", hash: "#amenities" },
+  { label: "Location", hash: "#location" },
+  { label: "Contact", to: "/contact" },
 ];
 
 const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
@@ -22,6 +25,7 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const isHome = pathname === "/";
+  const navMuted = scrolled || !isHome;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -31,52 +35,96 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   const closeMenu = () => setMobileOpen(false);
 
+  const homeHashHref = (hash: string) => (isHome ? hash : `/${hash}`);
+
   return (
     <>
+      {/* Developer mark — small, top-left only (not primary branding) */}
+      <div
+        className={`hidden sm:block fixed top-0 left-0 z-[10001] pointer-events-none pl-3 lg:pl-6 pt-[max(0.35rem,env(safe-area-inset-top))] max-w-[36%]`}
+        aria-hidden
+      >
+        <span
+          className={`pointer-events-none text-[8px] sm:text-[9px] font-semibold uppercase tracking-[0.2em] ${
+            navMuted ? "text-muted-foreground/90" : "text-white/65"
+          }`}
+        >
+          Adani Realty
+        </span>
+      </div>
+
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed top-0 left-0 z-[10000] transition-all duration-300 xl:right-[340px] right-0 ${
-          scrolled || !isHome
+          navMuted
             ? "bg-card/95 backdrop-blur-lg border-b border-border py-2 shadow-lg shadow-primary/5"
             : "bg-transparent py-4"
-        } ${scrolled || !isHome ? "text-foreground" : "text-white"}`}
+        } ${navMuted ? "text-foreground" : "text-white"}`}
       >
-        <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 min-w-0">
+        <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 min-w-0 pt-5 sm:pt-6">
           <div className="flex items-center justify-between gap-2 min-w-0">
-            <Link to="/" className="flex items-center gap-2 transition-colors duration-300" aria-label="Adani Shantigram – Home">
-              <AdaniLogo className="text-base sm:text-lg" />
-            </Link>
+            <ChannelPartnerNavBrand subtle={!navMuted} />
 
             <div className="hidden lg:flex items-center gap-8">
-              {isHome && navLinks.map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  onClick={closeMenu}
-                  className={`text-sm font-medium transition-colors hover:text-accent ${scrolled || !isHome ? "text-muted-foreground" : "text-white/90"}`}
-                >
-                  {label}
-                </a>
-              ))}
+              {isHome &&
+                navLinks.map((item) =>
+                  "to" in item ? (
+                    <Link
+                      key={item.label}
+                      to={item.to}
+                      onClick={closeMenu}
+                      className={`text-sm font-medium transition-colors hover:text-accent ${
+                        navMuted ? "text-muted-foreground" : "text-white/90"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.label}
+                      href={homeHashHref(item.hash)}
+                      onClick={closeMenu}
+                      className={`text-sm font-medium transition-colors hover:text-accent ${
+                        navMuted ? "text-muted-foreground" : "text-white/90"
+                      }`}
+                    >
+                      {item.label}
+                    </a>
+                  )
+                )}
               {!isHome && (
-                <Link to="/" className={`text-sm font-medium hover:text-accent ${scrolled || !isHome ? "text-muted-foreground" : "text-white/90"}`}>
+                <Link
+                  to="/"
+                  className={`text-sm font-medium hover:text-accent ${
+                    navMuted ? "text-muted-foreground" : "text-white/90"
+                  }`}
+                >
                   Home
                 </Link>
               )}
               <a
                 href="tel:+919409374599"
-                className={`flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-foreground ${scrolled || !isHome ? "text-muted-foreground" : "text-white/90"}`}
+                className={`flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-foreground ${
+                  navMuted ? "text-muted-foreground" : "text-white/90"
+                }`}
               >
                 <Phone size={14} /> +91 94093 74599
               </a>
-              <Button onClick={onOpenLead} size="sm" variant="accent" className="rounded-full px-6 font-medium">
+              <Button
+                onClick={onOpenLead}
+                size="sm"
+                variant="accent"
+                className="rounded-full px-6 font-medium"
+              >
                 Enquire Now
               </Button>
             </div>
@@ -84,14 +132,13 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
             <button
               type="button"
               onClick={() => setMobileOpen((p) => !p)}
-            className="lg:hidden p-2 rounded-lg transition-colors text-inherit"
+              className="lg:hidden p-2 rounded-lg transition-colors text-inherit"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
 
-          {/* Housing-style enquiry bar - only on home when scrolled */}
           {isHome && scrolled && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
@@ -105,7 +152,12 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
                 onClick={onOpenLead}
                 className="flex-1 min-w-0 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none cursor-pointer"
               />
-              <Button onClick={onOpenLead} size="sm" variant="accent" className="rounded-full shrink-0">
+              <Button
+                onClick={onOpenLead}
+                size="sm"
+                variant="accent"
+                className="rounded-full shrink-0"
+              >
                 Submit
               </Button>
             </motion.div>
@@ -123,19 +175,59 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 bg-card z-[9999] flex flex-col items-center justify-center gap-8 pt-20 pb-10"
           >
-            <button onClick={closeMenu} className="absolute top-6 right-6 text-foreground p-2" aria-label="Close menu">
+            <button
+              onClick={closeMenu}
+              className="absolute top-6 right-6 text-foreground p-2"
+              aria-label="Close menu"
+            >
               <X size={28} />
             </button>
-            {isHome && navLinks.map(({ label, href }) => (
-              <a key={label} href={href} onClick={closeMenu} className="text-foreground text-xl font-medium hover:text-accent transition-colors">
-                {label}
-              </a>
-            ))}
-            {!isHome && <Link to="/" onClick={closeMenu} className="text-foreground text-xl font-medium hover:text-accent">Home</Link>}
-            <a href="tel:+919409374599" onClick={closeMenu} className="flex items-center gap-2 text-muted-foreground hover:text-accent text-lg">
+            {isHome &&
+              navLinks.map((item) =>
+                "to" in item ? (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    onClick={closeMenu}
+                    className="text-foreground text-xl font-medium hover:text-accent transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.label}
+                    href={homeHashHref(item.hash)}
+                    onClick={closeMenu}
+                    className="text-foreground text-xl font-medium hover:text-accent transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                )
+              )}
+            {!isHome && (
+              <Link
+                to="/"
+                onClick={closeMenu}
+                className="text-foreground text-xl font-medium hover:text-accent"
+              >
+                Home
+              </Link>
+            )}
+            <a
+              href="tel:+919409374599"
+              onClick={closeMenu}
+              className="flex items-center gap-2 text-muted-foreground hover:text-accent text-lg"
+            >
               <Phone size={20} /> +91 94093 74599
             </a>
-            <Button onClick={() => { closeMenu(); onOpenLead(); }} variant="accent" className="rounded-full px-8 py-3 font-medium">
+            <Button
+              onClick={() => {
+                closeMenu();
+                onOpenLead();
+              }}
+              variant="accent"
+              className="rounded-full px-8 py-3 font-medium"
+            >
               Enquire Now
             </Button>
           </motion.div>
@@ -143,6 +235,6 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
       </AnimatePresence>
     </>
   );
-}
+};
 
 export default NavbarPrimary;

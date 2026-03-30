@@ -9,6 +9,8 @@ import LeadPopup from "./components/LeadPopup";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PropertyDetail from "./pages/PropertyDetail";
+import LegalDisclaimer from "./pages/LegalDisclaimer";
+import Contact from "./pages/Contact";
 import LeadSidebar from "./components/LeadSidebar";
 import LeadModalForm from "./components/LeadModalForm";
 import Layout from "./components/Layout";
@@ -38,9 +40,11 @@ function AppContent() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
+            <Route path="/legal-disclaimer" element={<LegalDisclaimer />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/project/:slug" element={<PropertyDetail />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
       <LeadSidebar onOpenLead={openLead} />

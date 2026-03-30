@@ -11,7 +11,7 @@ import MasterLayoutSection from "@/components/MasterLayoutSection";
 import TrustIndicators from "@/components/TrustIndicators";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
-import FooterSection from "@/components/FooterSection";
+import LandingLegalNotice from "@/components/LandingLegalNotice";
 
 const Index = () => {
   const { openLead } = useLeadModal();
@@ -29,8 +29,8 @@ const Index = () => {
         <MasterLayoutSection />
         <LocationMapSection onOpenLead={openLead} />
         <SiteVisitSection />
+        <LandingLegalNotice />
       </main>
-      <FooterSection />
       <ChatbotWidget onEnquire={openLead} />
       <StickyMobileCTA onOpenLead={openLead} />
     </div>

@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import ChannelPartnerBrandingLine from "@/components/legal/ChannelPartnerBrandingLine";
+import LegalDisclaimerText from "@/components/legal/LegalDisclaimerText";
 
 const SITE_VISIT_VIDEO = "/Shantigram_realty.mp4";
 
@@ -89,7 +91,9 @@ const SiteVisitSection = () => {
               Schedule a Site Visit
             </h2>
             <div className="accent-line-left !mx-0" />
-            <p className="text-muted-foreground mb-8">Experience Shantigram first-hand. Our team will arrange a private tour at your convenience.</p>
+            <p className="text-muted-foreground mb-6">Experience Shantigram first-hand. Our team will arrange a private tour at your convenience.</p>
+            <ChannelPartnerBrandingLine className="mb-4" />
+            <LegalDisclaimerText variant="summary" compact className="mb-8" />
 
             {submitted ? (
               <motion.div

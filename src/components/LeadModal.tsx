@@ -145,9 +145,10 @@ export default function LeadModal({ open, onClose }: Props) {
                 className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-primary"
               >
                 <option value="">Select Configuration</option>
-                <option>2 BHK</option>
                 <option>3 BHK</option>
                 <option>4 BHK</option>
+                <option>Villas</option>
+                {/* <option>2 BHK</option> */}
               </select>
 
               <textarea
