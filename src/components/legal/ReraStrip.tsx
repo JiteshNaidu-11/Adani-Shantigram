@@ -1,7 +1,6 @@
 import { ExternalLink } from "lucide-react";
 import {
   CHANNEL_PARTNER_RERA,
-  PROJECT_RERA,
   RERA_WEBSITE_URL,
 } from "@/constants/channelPartnerLegal";
 
@@ -12,10 +11,6 @@ export default function ReraStrip({ className = "" }: { className?: string }) {
     >
       <p className="font-medium text-foreground mb-2 text-sm">RERA</p>
       <ul className="space-y-1.5">
-        <li>
-          <span className="text-foreground/80">Project RERA Number: </span>
-          {PROJECT_RERA}
-        </li>
         <li>
           <span className="text-foreground/80">Channel Partner RERA Number: </span>
           {CHANNEL_PARTNER_RERA}

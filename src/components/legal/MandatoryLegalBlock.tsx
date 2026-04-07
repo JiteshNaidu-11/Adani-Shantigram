@@ -4,7 +4,6 @@ import {
   CHANNEL_PARTNER_IDENTITY_LINE,
   CHANNEL_PARTNER_DISPLAY_NAME,
   CHANNEL_PARTNER_RERA,
-  PROJECT_RERA,
   RERA_WEBSITE_URL,
 } from "@/constants/channelPartnerLegal";
 import LegalDisclaimerText from "@/components/legal/LegalDisclaimerText";
@@ -34,10 +33,6 @@ export default function MandatoryLegalBlock({
             RERA
           </p>
           <ul className="space-y-2 text-sm text-zinc-800 dark:text-zinc-200">
-            <li>
-              <span className="font-medium text-foreground">Project RERA Number: </span>
-              {PROJECT_RERA}
-            </li>
             <li>
               <span className="font-medium text-foreground">Channel Partner RERA Number: </span>
               {CHANNEL_PARTNER_RERA}

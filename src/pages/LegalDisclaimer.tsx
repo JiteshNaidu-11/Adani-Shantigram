@@ -8,7 +8,6 @@ import {
   COMPANY_PHONE,
   LEGAL_PAGE_DOCUMENT_TITLE,
   LEGAL_DISCLAIMER_PARAGRAPHS,
-  PROJECT_RERA,
   RERA_WEBSITE_URL,
 } from "@/constants/channelPartnerLegal";
 import { useDocumentTitle } from "@/hooks/usePageTitle";
@@ -102,10 +101,6 @@ export default function LegalDisclaimer() {
                 <li>
                   <span className="font-medium text-foreground">Channel Partner RERA Number: </span>
                   {CHANNEL_PARTNER_RERA}
-                </li>
-                <li>
-                  <span className="font-medium text-foreground">Project RERA Number: </span>
-                  {PROJECT_RERA}
                 </li>
                 <li>
                   <span className="font-medium text-foreground">RERA Website Link: </span>
