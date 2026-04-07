@@ -78,7 +78,7 @@ export default function TrustIndicators() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="section-heading">Our Legacy in Numbers</h2>
+          <h2 className="section-heading">Adani&apos;s Legacy in Numbers</h2>
           <div className="accent-line" />
         </motion.div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
