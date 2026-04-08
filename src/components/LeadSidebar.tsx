@@ -1,23 +1,39 @@
 import { motion } from "framer-motion";
 import { Phone, FileText, Calendar, MessageCircle, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, type FormEvent } from "react";
+import {
+  FORMSUBMIT_ACTION,
+  FORMSUBMIT_AUTORESPONSE,
+  FORMSUBMIT_SUBJECT,
+  getFormSubmitNextUrl,
+} from "@/constants/formSubmit";
 
 interface LeadSidebarProps {
   onOpenLead: () => void;
 }
 
 export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
-  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [nextUrl, setNextUrl] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
-    interest: "Brochure",
+    phone: "",
+    inquiry_type: "Brochure",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    setNextUrl(getFormSubmitNextUrl());
+  }, []);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (form.name && form.email) setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    const el = e.currentTarget;
+    if (!el.checkValidity()) return;
+    setSubmitting(true);
+    window.setTimeout(() => {
+      el.submit();
+    }, 50);
   };
 
   const openEnquiryForm = () => onOpenLead();
@@ -25,7 +41,6 @@ export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
   return (
     <>
       <div className="fixed top-0 right-0 w-[320px] xl:w-[340px] h-screen bg-card border-l border-border z-[9000] hidden xl:flex flex-col shadow-xl">
-        {/* Top strip */}
         <div className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground text-center py-2.5 px-4">
           <p className="text-xs font-semibold uppercase tracking-wider animate-pulse">Get Best Price • Free Site Visit</p>
         </div>
@@ -36,57 +51,67 @@ export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
             <p className="text-muted-foreground text-sm">Share your details for brochure, pricing & offers.</p>
           </div>
 
-          {submitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-center py-8 rounded-2xl bg-secondary/80"
+          <form action={FORMSUBMIT_ACTION} method="POST" onSubmit={handleSubmit} className="space-y-4">
+            <input type="hidden" name="_subject" value={FORMSUBMIT_SUBJECT} />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value={nextUrl} />
+            <input type="hidden" name="_autoresponse" value={FORMSUBMIT_AUTORESPONSE} />
+            <input type="hidden" name="form_source" value="lead_sidebar" />
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              required
+              className="w-full h-11 px-4 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              required
+              className="w-full h-11 px-4 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              required
+              className="w-full h-11 px-4 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
+            />
+            <select
+              name="inquiry_type"
+              value={form.inquiry_type}
+              onChange={(e) => setForm({ ...form, inquiry_type: e.target.value })}
+              className="w-full h-11 px-4 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
             >
-              <p className="font-display text-xl text-foreground mb-1">Thank you!</p>
-              <p className="text-muted-foreground text-sm">We'll get back within 30 minutes.</p>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                required
-                className="w-full h-11 px-4 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
-              />
-              <input
-                type="email"
-                placeholder="Email Address"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                required
-                className="w-full h-11 px-4 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
-              />
-              <select
-                value={form.interest}
-                onChange={(e) => setForm({ ...form, interest: e.target.value })}
-                className="w-full h-11 px-4 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
-              >
-                <option value="Brochure">Brochure</option>
-                <option value="Price List">Price List</option>
-                <option value="Site Visit">Site Visit</option>
-                <option value="Callback">Request Callback</option>
-              </select>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05, boxShadow: "0 8px 25px -5px rgba(0,0,0,0.15)" }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="w-full h-11 rounded-xl bg-adani-gradient text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
-              >
-                Submit <ChevronRight size={16} />
-              </motion.button>
-            </form>
-          )}
+              <option value="Brochure">Brochure</option>
+              <option value="Site Visit">Site Visit</option>
+              <option value="Pricing">Pricing</option>
+            </select>
+            <motion.button
+              type="submit"
+              disabled={submitting || !nextUrl}
+              whileHover={{ scale: 1.05, boxShadow: "0 8px 25px -5px rgba(0,0,0,0.15)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="w-full h-11 rounded-xl bg-adani-gradient text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-70"
+            >
+              {submitting ? "Submitting..." : "Submit"}
+              {!submitting ? <ChevronRight size={16} /> : null}
+            </motion.button>
+          </form>
 
           <div className="pt-4 border-t border-border space-y-3">
             <motion.button
+              type="button"
               onClick={onOpenLead}
               whileHover={{ scale: 1.03, x: 4 }}
               whileTap={{ scale: 0.98 }}
@@ -99,6 +124,7 @@ export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
               <ChevronRight size={16} className="text-muted-foreground" />
             </motion.button>
             <motion.button
+              type="button"
               onClick={onOpenLead}
               whileHover={{ scale: 1.03, x: 4 }}
               whileTap={{ scale: 0.98 }}
@@ -111,6 +137,7 @@ export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
               <ChevronRight size={16} className="text-muted-foreground" />
             </motion.button>
             <motion.button
+              type="button"
               onClick={openEnquiryForm}
               whileHover={{ scale: 1.05, boxShadow: "0 8px 20px -5px rgba(37,211,102,0.4)" }}
               whileTap={{ scale: 0.97 }}
@@ -135,9 +162,9 @@ export default function LeadSidebar({ onOpenLead }: LeadSidebarProps) {
         </div>
       </div>
 
-      {/* Tablet float - only when sidebar hidden */}
       <div className="hidden md:flex xl:hidden fixed bottom-6 right-6 flex-col gap-3 z-[9000]">
         <motion.button
+          type="button"
           onClick={onOpenLead}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}

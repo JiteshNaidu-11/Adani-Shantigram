@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import PropertyDetail from "./pages/PropertyDetail";
 import LegalDisclaimer from "./pages/LegalDisclaimer";
 import Contact from "./pages/Contact";
+import ThankYou from "./pages/ThankYou";
 import LeadSidebar from "./components/LeadSidebar";
 import LeadModalForm from "./components/LeadModalForm";
 import Layout from "./components/Layout";
@@ -42,6 +43,7 @@ function AppContent() {
             <Route path="/" element={<Index />} />
             <Route path="/legal-disclaimer" element={<LegalDisclaimer />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/project/:slug" element={<PropertyDetail />} />
             <Route path="*" element={<NotFound />} />
           </Route>

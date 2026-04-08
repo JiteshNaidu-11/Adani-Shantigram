@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import {
   CHANNEL_PARTNER_DISPLAY_NAME,
   CHANNEL_PARTNER_LOGO_SRC,
+  COMPANY_ADDRESS,
+  COMPANY_EMAIL,
+  COMPANY_PHONE,
 } from "@/constants/channelPartnerLegal";
 import MandatoryLegalBlock from "@/components/legal/MandatoryLegalBlock";
 
@@ -57,9 +60,13 @@ const FooterSection = () => {
           <div>
             <h4 className="font-display text-base text-foreground mb-4">Contact</h4>
             <div className="space-y-2 text-sm text-muted-foreground">
-              <p>+91 94093 74599</p>
-              <p>info@propraiserealtors.com</p>
-              <p>SG Highway, Ahmedabad – Gandhinagar, Gujarat</p>
+              <p>{COMPANY_PHONE}</p>
+              <p>
+                <a href={`mailto:${COMPANY_EMAIL}`} className="hover:text-accent transition-colors">
+                  {COMPANY_EMAIL}
+                </a>
+              </p>
+              <p>{COMPANY_ADDRESS}</p>
             </div>
           </div>
         </div>

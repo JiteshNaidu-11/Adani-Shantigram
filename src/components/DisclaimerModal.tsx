@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AdaniLogo from "@/components/AdaniLogo";
+import { COMPANY_EMAIL, COMPANY_PHONE } from "@/constants/channelPartnerLegal";
 
 const STORAGE_KEY = "adani_disclaimer_accepted";
 
@@ -55,8 +56,13 @@ export default function DisclaimerModal() {
             </div>
             <p className="text-sm text-muted-foreground mb-4">
               For updated sales and marketing information and collaterals, please contact:<br />
-              <strong className="text-foreground">Sales Team: +91 94093 74599</strong><br />
-              <strong className="text-foreground">Email: info@propraiserealtors.com</strong>
+              <strong className="text-foreground">Sales Team: {COMPANY_PHONE}</strong><br />
+              <strong className="text-foreground">
+                Email:{" "}
+                <a href={`mailto:${COMPANY_EMAIL}`} className="text-accent hover:underline">
+                  {COMPANY_EMAIL}
+                </a>
+              </strong>
             </p>
             <p className="text-xs text-muted-foreground mb-6">
               We use cookies to enhance your experience. By continuing, you agree to our{" "}
