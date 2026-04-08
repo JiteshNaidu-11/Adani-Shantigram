@@ -15,7 +15,7 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
     name: "",
     mobile: "",
     email: "",
-    message: "Hi, I'm interested in Adani Shantigram. Please share brochure, price and site visit details.",
+    message: "Hi, I'm interested in Shantigram. Please share brochure, price and site visit details.",
     consent: false,
   });
   const [submitted, setSubmitted] = useState(false);
@@ -30,7 +30,7 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
         name: "",
         mobile: "",
         email: "",
-        message: "Hi, I'm interested in Adani Shantigram. Please share brochure, price and site visit details.",
+        message: "Hi, I'm interested in Shantigram. Please share brochure, price and site visit details.",
         consent: false,
       });
       setSubmitted(false);
@@ -57,7 +57,7 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
             email: form.email,
             phone: form.mobile,
             message: form.message,
-            _subject: "Adani Shantigram – New Enquiry",
+            _subject: "Shantigram – New Enquiry",
           }),
         });
         if (!res.ok) throw new Error("Submission failed");
@@ -77,7 +77,7 @@ export default function LeadModalForm({ open, onClose }: LeadModalFormProps) {
       name: "",
       mobile: "",
       email: "",
-      message: "Hi, I'm interested in Adani Shantigram. Please share brochure, price and site visit details.",
+      message: "Hi, I'm interested in Shantigram. Please share brochure, price and site visit details.",
       consent: false,
     });
     onClose();

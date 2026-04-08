@@ -53,7 +53,7 @@ export default function AboutSection({ onOpenLead }: AboutSectionProps) {
             <h2 className="section-heading mb-2">Where The Good Life Begins</h2>
             <div className="accent-line-left !mx-0" />
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Adani Shantigram is a visionary 600-acre integrated township, strategically nestled between Ahmedabad and Gandhinagar along the prestigious SG Highway. It sets a new benchmark in Indian urban development with a thoughtfully planned environment for a vibrant, inclusive, and future-ready lifestyle.
+              Shantigram is a visionary 600-acre integrated township, strategically nestled between Ahmedabad and Gandhinagar along the prestigious SG Highway. It sets a new benchmark in Indian urban development with a thoughtfully planned environment for a vibrant, inclusive, and future-ready lifestyle.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
               With The Belvedere Golf & Country Club, Adani International School, 24×7 security, Shoppers' Plaza, and over 3,500 families already calling it home — it's a thriving community.
@@ -77,7 +77,7 @@ export default function AboutSection({ onOpenLead }: AboutSectionProps) {
             <iframe
               key="about-video"
               src={aboutVideoSrc(true)}
-              title="About Adani Shantigram township"
+              title="About Shantigram township"
               className="w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

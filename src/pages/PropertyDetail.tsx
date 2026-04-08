@@ -240,15 +240,15 @@ export default function PropertyDetail() {
           {activeTab === "Video" && (
             <div>
               <h2 className="font-display text-xl md:text-2xl text-foreground mb-2">
-                Adani Shantigram - The centre of all major locations
+                Shantigram - The centre of all major locations
               </h2>
               <p className="text-muted-foreground text-sm mb-6">
-                {project.name} is part of Adani Shantigram. Watch the overview - where the future lies.
+                {project.name} is part of Shantigram. Watch the overview - where the future lies.
               </p>
               <div className="rounded-xl overflow-hidden border border-border bg-black/5 aspect-video max-w-4xl">
                 <video
                   src={TOWNSHIP_VIDEO_SRC}
-                  title="Adani Shantigram Township"
+                  title="Shantigram Township"
                   className="w-full h-full object-cover"
                   controls
                   playsInline
@@ -301,7 +301,7 @@ export default function PropertyDetail() {
             <div>
               <h2 className="font-display text-xl md:text-2xl text-foreground mb-4">Address of Luxury</h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                {project.name} is situated within Adani Shantigram, the 600-acre integrated township on SG Highway
+                {project.name} is situated within Shantigram, the 600-acre integrated township on SG Highway
                 between Ahmedabad and Gandhinagar. The address offers prime connectivity to the airport, railway
                 station, SP Ring Road, and key city landmarks while being part of a secure, master-planned community
                 with world-class amenities.
@@ -310,7 +310,7 @@ export default function PropertyDetail() {
                 <p className="font-medium text-foreground">{project.name}</p>
                 <p className="text-muted-foreground text-sm">{LOCATION_TEXT}</p>
                 <p className="text-muted-foreground text-sm">
-                  Adani Shantigram - 600-acre integrated township - RERA registered
+                  Shantigram - 600-acre integrated township - RERA registered
                 </p>
               </div>
               <Button onClick={openLead} variant="accent" className="mt-6 rounded-full">

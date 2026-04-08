@@ -2,7 +2,7 @@ import { Building2, TreePine, Shield, Trophy, Car, Dumbbell, GraduationCap, Hear
 import { motion } from "framer-motion";
 
 const highlights = [
-  { icon: Building2, title: "Adani Shantigram", desc: "600-acre integrated township on SG Highway — Gujarat's largest" },
+  { icon: Building2, title: "Shantigram", desc: "600-acre integrated township on SG Highway — Gujarat's largest" },
   { icon: TreePine, title: "Golf & Country Club", desc: "The Belvedere Golf and Country Club at your doorstep" },
   { icon: Shield, title: "24×7 Security", desc: "Multi-tier security for you and your family" },
   { icon: Trophy, title: "Sports & Recreation", desc: "Cricket ground, football ground & aqua shows" },
@@ -22,7 +22,7 @@ export default function HighlightCardsGrid() {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="section-heading">Why Adani Shantigram</h2>
+          <h2 className="section-heading">Why Shantigram</h2>
           <div className="accent-line" />
         </motion.div>
         <motion.div

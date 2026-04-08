@@ -1,4 +1,4 @@
-# Adani Shantigram – Township Marketing Site
+# Shantigram – Township Marketing Site
 
 ## Getting started
 

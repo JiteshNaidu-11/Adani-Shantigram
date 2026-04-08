@@ -51,7 +51,7 @@ export default function HeroSection({ onOpenLead }: HeroSectionProps) {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-white font-semibold text-xs sm:text-sm uppercase tracking-[0.3em] mb-5 drop-shadow-md"
         >
-          Adani Shantigram — Gujarat's Largest Integrated Township
+          Shantigram — Gujarat's Largest Integrated Township
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
@@ -68,7 +68,7 @@ export default function HeroSection({ onOpenLead }: HeroSectionProps) {
           transition={{ delay: 0.5, duration: 0.5 }}
           className="text-white/90 text-base sm:text-lg md:text-xl max-w-2xl mb-10 leading-relaxed"
         >
-          Adani Shantigram — 600 acres on SG Highway, between Ahmedabad & Gandhinagar. Premium homes, villas, golf club & world-class amenities.
+          Shantigram — 600 acres on SG Highway, between Ahmedabad & Gandhinagar. Premium homes, villas, golf club & world-class amenities.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

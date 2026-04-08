@@ -50,7 +50,7 @@ const LocationMapSection = ({ onOpenLead }: LocationMapSectionProps) => (
           className="card-lift overflow-hidden h-80 md:h-[420px] bg-secondary relative"
         >
           <iframe
-            title="Adani Shantigram location - SG Highway Ahmedabad"
+            title="Shantigram location - SG Highway Ahmedabad"
             src="https://www.openstreetmap.org/export/embed.html?bbox=72.58%2C23.18%2C72.72%2C23.26&layer=mapnik&marker=23.22%2C72.65"
             className="absolute inset-0 w-full h-full border-0"
             loading="lazy"

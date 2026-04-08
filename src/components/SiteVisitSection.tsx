@@ -46,7 +46,7 @@ const SiteVisitSection = () => {
           body: JSON.stringify({
             name: form.name,
             phone: form.mobile,
-            _subject: "Adani Shantigram – Site Visit Request",
+            _subject: "Shantigram – Site Visit Request",
           }),
         });
       } catch {
@@ -71,7 +71,7 @@ const SiteVisitSection = () => {
             <video
               ref={videoRef}
               src={SITE_VISIT_VIDEO}
-              title="Adani Shantigram township"
+              title="Shantigram township"
               className="w-full h-72 md:h-[400px] object-cover"
               controls
               playsInline

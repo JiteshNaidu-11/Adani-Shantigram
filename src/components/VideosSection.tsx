@@ -44,7 +44,7 @@ export default function VideosSection() {
           <h2 className="section-heading">Fulfilling Your Housing Dreams</h2>
           <div className="accent-line" />
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Adani Shantigram Township – where the future lies. Watch how families are living the good life.
+            Shantigram Township – where the future lies. Watch how families are living the good life.
           </p>
         </motion.div>
 

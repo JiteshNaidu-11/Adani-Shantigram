@@ -19,7 +19,7 @@ export default function MasterLayoutSection() {
           <h2 className="section-heading">Master Layout</h2>
           <div className="accent-line" />
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Explore Adani Shantigram — the 600-acre integrated township plan — residential, commercial, greens, and amenities.
+            Explore Shantigram — the 600-acre integrated township plan — residential, commercial, greens, and amenities.
           </p>
         </motion.div>
         <motion.div
@@ -32,14 +32,14 @@ export default function MasterLayoutSection() {
             {!useFallback ? (
               <img
                 src="/master-layout.png"
-                alt="Adani Shantigram Master Layout"
+                alt="Shantigram Master Layout"
                 className="w-full h-full object-contain p-4"
                 onError={() => setUseFallback(true)}
               />
             ) : (
               <img
                 src={MASTER_LAYOUT_FALLBACK}
-                alt="Adani Shantigram township plan"
+                alt="Shantigram township plan"
                 className="w-full h-full object-cover"
               />
             )}
