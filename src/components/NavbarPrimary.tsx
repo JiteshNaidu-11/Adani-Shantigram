@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ChannelPartnerNavBrand from "@/components/ChannelPartnerNavBrand";
+import { COMPANY_PHONE, COMPANY_PHONE_TEL_HREF } from "@/constants/channelPartnerLegal";
 
 interface NavbarPrimaryProps {
   onOpenLead: () => void;
@@ -112,12 +113,12 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
                 </Link>
               )}
               <a
-                href="tel:+919409374599"
+                href={COMPANY_PHONE_TEL_HREF}
                 className={`flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-foreground ${
                   navMuted ? "text-muted-foreground" : "text-white/90"
                 }`}
               >
-                <Phone size={14} /> +91 94093 74599
+                <Phone size={14} /> {COMPANY_PHONE}
               </a>
               <Button
                 onClick={onOpenLead}
@@ -214,11 +215,11 @@ const NavbarPrimary = ({ onOpenLead }: NavbarPrimaryProps) => {
               </Link>
             )}
             <a
-              href="tel:+919409374599"
+              href={COMPANY_PHONE_TEL_HREF}
               onClick={closeMenu}
               className="flex items-center gap-2 text-muted-foreground hover:text-accent text-lg"
             >
-              <Phone size={20} /> +91 94093 74599
+              <Phone size={20} /> {COMPANY_PHONE}
             </a>
             <Button
               onClick={() => {

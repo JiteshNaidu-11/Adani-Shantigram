@@ -1,4 +1,5 @@
 import { Phone, MessageCircle, IndianRupee } from "lucide-react";
+import { COMPANY_PHONE_TEL_HREF } from "@/constants/channelPartnerLegal";
 
 interface StickyMobileCTAProps {
   onOpenLead: () => void;
@@ -7,7 +8,7 @@ interface StickyMobileCTAProps {
 const StickyMobileCTA = ({ onOpenLead }: StickyMobileCTAProps) => (
   <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-card border-t border-border px-3 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] flex gap-2">
     <a
-      href="tel:+919409374599"
+      href={COMPANY_PHONE_TEL_HREF}
       className="flex-1 flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-primary-foreground text-sm font-medium"
     >
       <Phone size={15} /> Call Now

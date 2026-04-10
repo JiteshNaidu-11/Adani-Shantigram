@@ -6,6 +6,7 @@ import {
   COMPANY_ADDRESS,
   COMPANY_EMAIL,
   COMPANY_PHONE,
+  COMPANY_PHONE_TEL_HREF,
   LEGAL_PAGE_DOCUMENT_TITLE,
   LEGAL_DISCLAIMER_PARAGRAPHS,
   RERA_WEBSITE_URL,
@@ -67,7 +68,7 @@ export default function LegalDisclaimer() {
                     {phoneIsPlaceholder ? (
                       COMPANY_PHONE
                     ) : (
-                      <a href={`tel:${COMPANY_PHONE.replace(/\s/g, "")}`} className="text-accent hover:underline">
+                      <a href={COMPANY_PHONE_TEL_HREF} className="text-accent hover:underline">
                         {COMPANY_PHONE}
                       </a>
                     )}

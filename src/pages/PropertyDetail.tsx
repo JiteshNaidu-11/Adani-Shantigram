@@ -21,6 +21,7 @@ const FALLBACK_IMAGE = "/images/projects/the-west-park.png";
 
 import { Button } from "@/components/ui/button";
 import { getProjectBySlug } from "@/lib/projectsData";
+import { COMPANY_PHONE_TEL_HREF } from "@/constants/channelPartnerLegal";
 import { useLeadModal } from "@/context/LeadModalContext";
 
 const TABS = [
@@ -410,7 +411,7 @@ export default function PropertyDetail() {
             *Price indicative. RERA compliant. Contact sales for updated pricing.
           </p>
           <div className="flex gap-3">
-            <a href="tel:+919409374599">
+            <a href={COMPANY_PHONE_TEL_HREF}>
               <Button size="sm" variant="accent" className="rounded-full gap-2">
                 <Phone size={16} /> Call Now
               </Button>

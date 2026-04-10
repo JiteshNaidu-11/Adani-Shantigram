@@ -33,7 +33,10 @@ export const COMPANY_ADDRESS =
   "SG Highway, Ahmedabad – Gandhinagar, Gujarat";
 
 export const COMPANY_PHONE =
-  import.meta.env.VITE_COMPANY_PHONE?.trim() || "+91 94093 74599";
+  import.meta.env.VITE_COMPANY_PHONE?.trim() || "+91 96015 93111";
+
+/** Use for `href` on call links (no spaces). */
+export const COMPANY_PHONE_TEL_HREF = `tel:${COMPANY_PHONE.replace(/\s/g, "")}`;
 
 export const COMPANY_EMAIL =
   import.meta.env.VITE_COMPANY_EMAIL?.trim() || "info@propraiserealtors.com";
